@@ -10,13 +10,13 @@ gem "profanity_filter"
 gem 'gravatar_image_tag'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'rake',  '0.9.2'
+#gem 'faker', '0.3.1'
 
 group :development do
   gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
   # rspec-rails for Rspec-specific generators (rails generate)
   gem 'rspec-rails', '2.0.0.beta.18'
   gem 'annotate'
-  gem 'faker', '0.3.1'
   gem 'capistrano'
 end
 
@@ -31,7 +31,6 @@ end
 
 group :production do
   gem 'mysql'
-  gem 'faker', '0.3.1'
 end
 
 
