@@ -15,7 +15,7 @@ test:
   pool: 5
   timeout: 5000
 
-  production:
+production:
    adapter: mysql
    host: localhost
    username: <%= ENV['mysql_username'] %>
