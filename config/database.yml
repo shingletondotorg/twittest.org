@@ -16,8 +16,8 @@ test:
   timeout: 5000
 
 production:
-   adapter: mysql
-   host: localhost
-   username: <%= ENV['mysql_username'] %>
-   password: <%= ENV['mysql_password'] %>
-   database: <%= ENV['mysql_database'] %>
+  adapter: mysql
+  host: localhost
+  username: <%= ENV['mysql_username'] %>
+  password: <%= ENV['mysql_password'] %>
+  database: <%= ENV['mysql_database'] %>
