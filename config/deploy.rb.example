@@ -17,8 +17,20 @@ role :web, "your_server"                          # Your HTTP server, Apache/etc
 role :app, "your_server"                          # This may be the same as your `Web` server
 role :db,  "your_server", :primary => true # This is where Rails migrations will run
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+# Let capistrano work with server-side RVM
+set :default_environment, {
+  'PATH'         => "/home/duncans/.rvm/gems/ruby-1.9.2-p290/bin:/home/duncans/.rvm/bin:$PATH",
+  'RUBY_VERSION' => 'ruby 1.9.2',
+  'GEM_HOME'     => '/home/duncans/.rvm/gems/ruby-1.9.2-p290',
+  'GEM_PATH'     => '/home/duncans/.rvm/gems/ruby-1.9.2-p290',
+  'BUNDLE_PATH'  => '/home/duncans/.rvm/gems/ruby-1.9.2-p290'  # If you are using bundler.
+}
+
+namespace :rvm do
+  task :trust_rvmrc do
+    run "rvm rvmrc trust \#\{release_path\}"
+  end
+end
 
 # Configure tasks for Passenger
 namespace :deploy do
