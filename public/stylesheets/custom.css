@@ -1,0 +1,758 @@
+.container {
+  /*
+   * 18 Blueprint columns
+   * Blueprint CSS uses a grid of columns 40 pixels across, 30 pixels for
+   * the column itself and 10 pixels of padding. The rightmost column
+   * doesn’t need padding, so 18 columns is 710 pixels: 18 * 40 – 10 = 710.
+   */
+  width: 100%;
+}
+
+body {
+ background: #fff;
+}
+
+header {
+	background: url("../images/bg-header.png") repeat-x scroll 0 0 transparent;
+	box-shadow: 0 0 5px #888888;
+	display: block;
+	height: 40px;
+	position: relative;
+	text-align: center;
+	width: 100%;  
+}
+
+
+header #top-bar-bg {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+	height: 40px; 
+}
+header #top-bar {
+    margin: 0 auto;
+    text-align: left;
+}
+
+header #top-bar .top-bar-inside {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 910px;
+  left: 0px;
+  height:40px; 
+}
+
+div.topbar a {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Navigation */
+
+nav {
+  float: right;
+  display:block;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+  height:35px;
+}
+
+nav ul li a {
+  	padding: 0 5px;
+	font-weight: normal;
+	color: #bbbbbb;
+	font: 13px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-decoration: none;	
+	position: relative;
+	top:7px;
+}
+
+nav ul li a:visited {
+   color: #bbbbbb;/* dark teal */
+}
+
+nav ul li a:hover {
+	text-decoration: none;	
+	 color: #FFFFFF;
+}
+
+nav ul li:hover {
+	background-color: rgba(255, 255, 255, 0.1);	
+}
+
+
+
+section {
+  background: url("../images/bg-page.jpg") repeat-x #c1deee;
+}
+
+section #container-header {
+  padding-top:10px;
+  padding-bottom:10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 910px;
+}
+
+section #container {
+ font: 13px/18px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0 auto;
+    padding: 0 40px;
+    width: 920px;
+}
+
+section #page-outer{
+  margin: 0 auto;
+  width: 1000px;
+}
+
+section .page-header {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border-radius: 5px 5px 0 0;
+    padding: 15px 20px 0px;
+    position: relative;
+    z-index: 2;
+}
+
+section #tweet-box h2 {
+    color: #999999;
+    font: bold 18px Helvetica Neue,Helvetica,sans-serif;
+    margin: 0 0 6px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+section #tweet-box .text-area {
+	    margin-bottom: 10px;
+	  position: relative;
+}
+
+section #tweet-box .tweet-editor{
+	    border: 1px solid #CCCCCC;
+	    border-radius: 4px 4px 4px 4px;
+	    box-shadow: 0 1px #FFFFFF;
+	    color: #222222;
+	    font: 14px/18px "Helvetica Neue",Arial,sans-serif;
+	    height: 56px;
+	    outline: medium none;
+	    overflow-x: hidden;
+	    overflow-y: auto;
+	    padding: 8px;
+	    white-space: pre-wrap;
+	    width: 482px;
+	    word-wrap: break-word;
+	resize:vertical;
+}
+
+
+section #tweet-box .tweet-button {
+    font-size: 15px;
+    font-weight: 300;
+    padding: 6px 9px;
+}
+
+section #tweet-box .button {
+    background: url("../images/bg-tweet-btn.png") repeat-x scroll 0 0 #DDDDDD;
+    border-color: #BBBBBB #BBBBBB #999999;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 #F8F8F8;
+    color: #333333 !important;
+    cursor: pointer;
+    display: inline-block;
+    font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
+    margin: 0;
+    overflow: hidden;
+    padding: 5px 9px;
+    text-shadow: 0 1px #F0F0F0;
+}
+
+.button {
+	background: url("../images/bg-tweet-btn.png") repeat-x scroll 0 0 #DDDDDD;
+    border-color: #BBBBBB #BBBBBB #999999;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 #F8F8F8;
+    color: #333333 !important;
+    cursor: pointer;
+    display: inline-block;
+    font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
+    margin: 0;
+    overflow: hidden;
+    padding: 5px 9px;
+    text-shadow: 0 1px #F0F0F0;	
+}
+
+section #tweet-box .tweet-button-container {
+    height: 29px;
+    margin: 5px 0 3px;
+    position: relative;
+    text-align: right;
+    z-index: 3;
+}
+
+section .stream-manager {
+    z-index: 1;
+}
+section .stream-container {
+    background-color: #FFFFFF;
+    margin-top: 1px;
+    min-height: 800px;
+    padding-top: 1px;
+    position: relative;
+}
+
+
+section .stream-item {
+    border-bottom: 1px solid #EBEBEB;
+    border-top: 1px solid transparent;
+    clear: both;
+    display: block;
+    margin-top: -1px;
+    min-height: 60px;
+    outline: medium none;
+    position: relative;
+	padding:15px
+}
+
+section .stream-item:hover {
+    background: none repeat scroll 0 0 #f3f8fb;
+    border-top: 1px solid #EBEBEB;
+    cursor: pointer;
+}
+
+
+section #page-container {
+    border-radius: 5px 5px 0px 0px;
+    margin: 0 40px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    width: 920px;
+    z-index: 1;
+}
+section #page-node-home{
+  margin: 0;
+    padding: 0;	
+}
+
+section #page-node-home .main-content {
+	    background: none repeat scroll 0 0 #FFFFFF;
+	    border-radius: 5px 5px 5px 5px;
+	    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+	    display: inline-block;
+	    float: left;
+	    height: 100%;
+	    min-height: 700px;
+	    position: relative;
+	    width: 540px;
+	    z-index: 4;
+	}
+section #page-node-home .dashboard {
+	    border-top-right-radius: 5px;
+	    max-width: 460px;
+	    min-width: 340px;
+	    overflow: hidden;
+	    padding: 12px 20px;
+	    position: relative;
+	}
+
+section #left-pane h2 {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif; 
+}
+
+section #left-pane hr {
+	margin-top:15px; 
+	margin-bottom:15px;
+}
+
+section #left-pane div {
+  font-size: 12px;
+  font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif; 
+  font-weight:normal;
+  color:#666666;
+}
+	
+
+
+section .home-container{
+background: none repeat scroll 0 0 rgba(221, 238, 246, 0.9);
+}
+/* Links */
+
+a {
+  color: #09c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #069;
+}
+
+
+
+/* Big, clickable sign up button */
+
+a.signup_button {
+
+	    background: url("../images/bg-btn-signup.png") repeat-x scroll 0 0 #FFAA22;
+	    border: 1px solid #FFAA22;
+	    border-radius: 5px 5px 5px 5px;
+	    box-shadow: 0 1px 0 #FFFFFF;
+	    color: #333333;
+	    cursor: pointer;
+	    display: block;
+	    font: bold 16px Helvetica Neue,Arial,Sans-serif;
+	    padding: 4px 8px;
+	    text-align: center;
+	    text-decoration: none;
+	    text-shadow: 0 1px 0 #FFEE66;
+	    width:160px;
+}
+
+/* Round corners */
+.round {
+  -moz-border-radius:    5px;
+  -webkit-border-radius: 5px;
+  border-radius:         5px;
+}
+
+.round-top {
+  -moz-border-top-left-radius:    5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius:         5px;
+  -moz-border-top-right-radius:    5px;
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius:         5px;	
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:#fff;
+}
+
+.button_to_link {
+	border:0px;
+	background:none;
+	color: #09c;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.button_to_link:hover {
+	color: #069;
+   text-decoration: underline;
+
+}
+
+.button_to_link:visited {
+	color: #069;
+}
+
+
+.button_to {
+	float:left;
+	
+}
+
+footer .gold-bar {
+    background: url("../images/bg-btn-signup.png") repeat-x scroll 0 -15px #FFAA22;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    display: block;
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+footer nav {
+  padding-top:30px;;
+  float: none;
+}
+
+/* User show page */
+h1 {
+  font-size: 200%;
+}
+
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 70%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 30%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+}
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+
+/* Forms */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.field_with_errors label {
+  color: #fff;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_exlanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* User index */
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
+/* Microposts */
+h1.micropost {
+  margin-bottom: 0.3em;
+}
+
+table.microposts {
+  margin-top: 1em;
+}
+
+table.microposts tr {
+  height: 70px;
+}
+
+table.microposts tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.microposts tr td.micropost {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.microposts tr td.micropost span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.microposts {
+  font-size: 80%;
+}
+
+form.new_micropost {
+  margin-bottom: 2em;
+}
+
+form.new_micropost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+.stream-tabs {
+    height: 30px;
+	margin: 15px -20px 0;
+	border-bottom: 1px solid #EEEEEE;
+    clear: both;
+    display: block;
+    list-style-type: none;
+    padding: 0 10px;
+ 	list-style: none;
+ 	border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.stream-tabs .stream-tab {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+	cursor: pointer;
+	float: left;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	margin-left: 10px;
+}
+
+.stream-tabs .tab-text {
+    border-radius: inherit;
+    padding: 4px 10px 3px;
+    text-shadow: 0 1px 0 #FFFFFF;
+	cursor: pointer;
+	display: block;
+	line-height: 24px;
+	outline: medium none;
+    overflow: hidden;
+	text-decoration: none;
+}
+
+.stream-tabs .stream-tab-active{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #EEEEEE ;
+	    border-style: solid solid none;
+	    border-width: 1px 1px medium;
+    color: #333333;
+ border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+	cursor: pointer;
+	    float: left;
+	    margin: 0;
+	    padding: 0;
+	    position: relative;
+	 margin-left: 10px;
+}
+
+.stream-tabs .stream-tab:hover {
+    background: none repeat scroll 0 0 #F0F0F0;
+    border-color: #EEEEEE #EEEEEE #FFFFFF;
+    color: #333333;
+}
+
+form #charsLeft{
+	font-size:20px;
+	font-weight:bold;
+	color:#ccc;
+	position: relative;
+	    top: 2px;
+	}
+
+.tweeted-as{
+	color: #333333;
+	font: bold 16px Helvetica Neue,Helvetica,sans-serif;
+	margin: 0 0 6px;
+	text-shadow: 0 1px 0 #FFFFFF;
+	line-height:15px;	
+}
+
+.tweeted-content{
+	font-family: Arial,"Helvetica Neue",sans-serif;
+	line-height: 19px;
+	padding: 0;font-size: 15px;color: #444444;
+	word-wrap: break-word;
+}
+
+.tweeted-on{
+	float:right; color: #999999; font-size: 11px;line-height: 15px;
+}
+
+
+
+div.whole-page-wrapper{
+	background-color:#fff; 
+	clear:both;
+	display:block;
+	padding:20px
+}
+
+div.whole-page-header {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border-radius: 5px 5px 0 0;
+    margin: -20px -20px 20px;
+    padding: 15px 20px 0;
+}
+
+div.whole-page-header h1 {
+    clear: none;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+div.whole-page-header ul.tabs {
+    margin: 15px -20px 0;
+    max-width: 1040px;
+    min-width: 911px;
+    padding-left: 9px;
+    position: relative;
+    width: auto;
+	border-bottom: 1px solid #E5E5E5;
+    clear: both;
+    height: 30px;
+    width: 100%;
+    list-style: none outside none;
+}
+
+div.whole-page-header ul.tabs li {
+    display: inline;
+    line-height: 1;
+}
+
+div.whole-page-header ul.tabs li.active a:hover {
+    padding-bottom: 3px;
+ background: none repeat scroll 0 0 #FFFFFF;
+}
+
+
+div.whole-page-header ul.tabs li.active a {
+    border-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #E5E5E5;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    color: #333333;
+    font-weight: normal;
+    padding-top: 3px;
+}
+
+
+
+div.whole-page-header ul.tabs li a {
+    border-radius: 4px 4px 0 0;
+    float: left;
+    line-height: 24px;
+    margin: 0;
+    overflow: hidden;
+    padding: 4px 10px 3px;
+    text-shadow: 0 1px 0 #FFFFFF;
+    width: auto;
+    color: #2276BB;
+    text-decoration: none;
+}
+
+div.whole-page-header ul.tabs li a:hover {
+    background: none repeat scroll 0 0 #EEEEEE;
+    padding-bottom: 2px;
+    text-decoration: none;
+}
+
+
+div.left-section {
+    float: left;
+    width: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+div.middle-section {
+	    margin-left: 260px;
+	    max-width: 370px;
+	    min-width: 370px;
+	    padding-bottom: 20px;
+		float:left;
+}
+
+div.right-section {
+	    margin-left: 660px;
+	    max-width: 340px;
+	    min-width: 220px;
+	    padding-bottom: 20px;
+}
+
+div.whole-page h3 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+   	font-weight: normal;
+    line-height: 1;
+ 	font: 18px "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+div.whole-page p{
+	color: #777777;
+    margin-bottom: 5px;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0 0 15px;
+}
+
+div.whole-page  hr {
+    border-bottom-colors: none;
+    border-image: none;
+    border-left-colors: none;
+    border-right-colors: none;
+    border-top-colors: none;
+    border-color: #DDDDDD;
+    border-right: 0 none;
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    display: block;
+    margin: 20px 0 19px !important;
+	clear :none;
+}

@@ -1,0 +1,36 @@
+<div>
+	<span style="float:right"><h2><%= current_user.score %></h2></span>
+	<h2>My Score</h2>
+</div>
+
+<hr />
+
+<h2>Ranking in my school: <%= current_user.position_in_school %></h2>
+<% @myschool_leaderboard.each do |user| %>
+	<div>
+		<span style="float:right"><%= user.position_in_school %> (<%= user.score %>)</span>
+		<%= user.name %>
+	</div>
+<% end %>
+
+
+<hr />
+
+<h2>Ranking overall on Twittest: <%= current_user.position_overall %></h2>
+<% @twittest_leaderboard.each do |user| %>
+	<div>
+		<span style="float:right"><%= user.position_overall %> (<%= user.score %>)</span>
+		<%= user.name %>
+	</div>
+<% end %>
+
+<hr />
+
+<h2>Ranking of my School on Twittest: <%= current_user.school.position_overall %></h2>
+<% @school_leaderboard.each do |school| %>
+	<div>
+		<span style="float:right"><%= school.position_overall %> (<%= school.score %>)</span>
+		<%= school.name %>
+	</div>
+<% end %>
+

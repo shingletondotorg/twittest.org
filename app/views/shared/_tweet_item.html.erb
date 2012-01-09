@@ -1,0 +1,29 @@
+ <% if current_user?(tweet_item.user) %> 
+<div class="stream-item">
+  <div class="micropost">
+    <div>
+		<span class="tweeted-on">Tweeted <%= time_ago_in_words(tweet_item.created_at) %> ago</span>
+		<span class="tweeted-as"><%= tweet_item.turing_user.name %></span>
+	</div>
+	<div class="tweeted-content"><%= wrap(tweet_item.content) %></div>
+	
+	<% if tweet_item.votes.empty? %>
+		<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
+			<%= link_to "Delete Tweet", tweet_item, :method => :delete,
+	                                       :confirm => "You sure?",
+	                                       :title => tweet_item.content %>
+		</div>
+	<% else %>
+	<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
+		<a onclick="$('#votes-for-<%=tweet_item.id%>').toggle();">Show votes (<%= tweet_item.votes.count %>)</a>
+	</div>
+	
+	<div id="votes-for-<%=tweet_item.id%>" style="display:none">
+	  <%= render :partial => 'shared/vote_item', :collection => tweet_item.votes %>
+
+	</div>
+	<% end %>
+
+	</div>
+</div>
+	<% end %>

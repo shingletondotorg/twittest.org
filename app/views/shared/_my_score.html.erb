@@ -1,0 +1,205 @@
+<div id="#myscores">
+<h2>My Score</h2>
+<div>
+
+<script type="text/javascript">
+
+			var pie_vote_real;
+			var pie_vote_fake;
+			var pie_tweet_real;
+			var pie_tweet_fake
+			
+			
+				
+		
+			
+			$(document).ready(function() {
+				Highcharts.setOptions({
+				    colors: ['#007236', '#9e0b0f','#f7941d']
+				});
+				
+				
+				pie_vote_real = new Highcharts.Chart({
+					chart: {
+							 renderTo: 'pie-vote-real',
+							 backgroundColor: '#d5eaf3',
+					         plotBackgroundColor: null,
+					         plotBorderWidth: null,
+					         plotShadow: false
+					      },
+					      title: { text: '' },
+					      tooltip: {
+					         formatter: function() { var s; if (this.point.name) { s = this.y; } return s; }
+					      },
+					      plotOptions: {
+					         pie: {
+					            allowPointSelect: true,
+					            cursor: 'pointer',
+					            dataLabels: {
+					               enabled: false
+					            },
+					            showInLegend: true
+					         }
+					      },
+							legend:{ backgroundColor: '#fff' },
+					       series: [{
+					         type: 'pie',
+					         name: 'Votes on real tweets',
+					         data: [
+					            ['Correct', <%= Vote.vote_real_correct(current_user) %>],
+					            ['Incorrect', <%= Vote.vote_real_incorrect(current_user) %>]
+					         ]
+					      }]
+				});
+				
+				pie_vote_fake = new Highcharts.Chart({
+					chart: {
+							 renderTo: 'pie-vote-fake',
+							 backgroundColor: '#d5eaf3',
+					         plotBackgroundColor: null,
+					         plotBorderWidth: null,
+					         plotShadow: false
+					      },
+					      title: {
+					         
+								text: ''
+					      },
+					      tooltip: {
+						
+					         formatter: function() { var s; if (this.point.name) { s = this.y; } return s; }
+					      },
+					      plotOptions: {
+					         pie: {
+					            allowPointSelect: true,
+					            cursor: 'pointer',
+					            dataLabels: {
+					               enabled: false
+					            },
+					            showInLegend: true
+					         }
+					      },
+						legend:{
+							 backgroundColor: '#fff',
+						},
+					       series: [{
+					         type: 'pie',
+					         name: 'Browser share',
+							color: ['green','red', 'yellow'],
+					         data: [
+					            ['Spotted',  <%= Vote.vote_fake_spotted(current_user) %>],
+								['Fooled',  <%= Vote.vote_fake_fooled(current_user) %>],
+								['Almost',  <%= Vote.vote_fake_partial(current_user) %>]
+					         ]
+					      }]
+				});
+				
+				pie_tweet_real = new Highcharts.Chart({
+					chart: {
+							 renderTo: 'pie-tweet-real',
+							 backgroundColor: '#d5eaf3',
+					         plotBackgroundColor: null,
+					         plotBorderWidth: null,
+					         plotShadow: false
+					      },
+					      title: {
+					         
+								text: ''
+					      },
+					      tooltip: {
+						
+					         formatter: function() { var s; if (this.point.name) { s = this.y; } return s; }
+					      },
+					      plotOptions: {
+					         pie: {
+					            allowPointSelect: true,
+					            cursor: 'pointer',
+					            dataLabels: {
+					               enabled: false
+					            },
+					            showInLegend: true
+					         }
+					      },
+						legend:{
+							 backgroundColor: '#fff',
+						},
+					       series: [{
+					         type: 'pie',
+					         name: 'Browser share',
+							color: ['green','red', 'yellow'],
+					         data: [
+					           	    ['Agreed', <%= Vote.tweet_real_agreed(current_user) %>],
+								    ['Disagreed', <%= Vote.tweet_real_disagreed(current_user) %>]
+					         ]
+					      }]
+				});
+				
+				pie_tweet_fake = new Highcharts.Chart({
+					chart: {
+							 renderTo: 'pie-tweet-fake',
+							 backgroundColor: '#d5eaf3',
+					         plotBackgroundColor: null,
+					         plotBorderWidth: null,
+					         plotShadow: false
+					      },
+					      title: {
+					         
+								text: ''
+					      },
+					      tooltip: {
+						
+					         formatter: function() { var s; if (this.point.name) { s = this.y; } return s; }
+					      },
+					      plotOptions: {
+					         pie: {
+					            allowPointSelect: true,
+					            cursor: 'pointer',
+					            dataLabels: {
+					               enabled: false
+					            },
+					            showInLegend: true
+					         }
+					      },
+						legend:{
+							 backgroundColor: '#fff',
+						},
+					       series: [{
+					         type: 'pie',
+					         name: 'Browser share',
+							color: ['green','red', 'yellow'],
+					         data: [
+					            ['Fooled',  <%= Vote.tweet_fake_fooled(current_user) %>],
+					            ['Spotted',  <%= Vote.tweet_fake_spotted(current_user) %>],
+								['Almost',  <%= Vote.tweet_fake_partial(current_user) %>]
+					         ]
+					      }]
+				});
+			});
+
+		</script>
+
+<div id="pie-charts-votes" style="z-index:0">
+	<div>Voting on other tweets<div>
+	<div>
+		<span style="float:right">
+			<div> Users real</div>
+			<div id="pie-vote-real"style="width:170px; height:170px;"></div>
+		</span>
+		<div>
+			<div> Users faking</div>
+			<div id="pie-vote-fake" style="width:170px; height:170px;"></div>
+		</div>
+	</div>
+</div>
+<div id="pie-charts-tweets" style="z-index:0">
+	<div>Voting on my tweets<div>
+	<div>
+		<span style="float:right">
+			<div>  real</div>
+			<div id="pie-tweet-real"style="width:170px; height:170px;"></div>
+		</span>
+		<div>
+			<div>  faking</div>
+			<div id="pie-tweet-fake" style="width:170px; height:170px;"></div>
+		</div>
+</div>
+</div>

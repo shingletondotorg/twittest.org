@@ -1,0 +1,25 @@
+<header>
+    
+    <div id="top-bar"> 
+	  <div class="top-bar-inside">
+        <%= link_to logo, root_path %> 
+		<span style="color:#BBBBBB; top: -16px; left: 20px; position:relative; font: 13px 'Helvetica Neue',Helvetica,Arial,sans-serif;">
+		<% if signed_in? %>	Welcome <%= current_user.name %>! <% end %>
+		</span>
+		<nav>
+			<ul>
+			<li><%= link_to "Home", root_path %></li>	
+			<% if signed_in? %>
+				<li><%= link_to "My Score", votesreal_path %></li>
+				<li><%= link_to "My Profile", edit_user_path(current_user) %></li>
+				<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+			<% else %>
+				<li><%= link_to "Sign in", signin_path %></li>
+			<% end %>
+			</ul>
+		</nav>
+      </div>
+    </div>
+
+</header>
+

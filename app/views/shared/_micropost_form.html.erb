@@ -1,0 +1,34 @@
+
+
+<%= form_for @micropost do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="text-area">
+    <%= f.text_area :content, :class => 'tweet-editor'%>
+ 	<script type="text/javascript">
+	   $('#micropost_content').limit('140','#charsLeft');
+	</script>
+	</div> 
+  <div class="tweet-button-container">
+    
+	
+	<span style="float:left; top:9px; position:relative;">
+	Tweet as: 
+	<% @turing_users.each do |tu| %>
+	  <%= f.radio_button :turing_user_id, tu.id %>
+	  <%= f.label :turing_user_id, tu.name %>
+	<% end %>
+	</span>
+	
+	<% # f.collection_select :turing_user_id, TuringUser.all, :id, :name, :prompt => true  %>
+	
+	<span id="charsLeft"></span>
+	
+	<script type="text/javascript">
+	    var val = $('#micropost_content').val();
+		var length = val.length;
+		length = 140 - length;
+		$('#charsLeft').text(length);
+	</script>
+	<%= f.submit "Tweet", :class => 'button' %>
+  </div>
+<% end %>

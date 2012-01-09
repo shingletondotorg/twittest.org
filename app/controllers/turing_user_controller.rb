@@ -1,0 +1,2 @@
+class TuringUserController < ApplicationController
+end

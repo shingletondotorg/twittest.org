@@ -1,0 +1,18 @@
+<div class="main-content" style="min-height: 459px">
+	<div class="page-header">
+	<div id="tweet-box">
+<h2>Create school</h2>
+
+<%= form_for(@school) do |f| %>
+  <%= render 'fields', :f => f %>
+  <div class="actions">
+    <%= f.submit "Create", :class=> 'button' %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+<div id="left-pane" class="dashboard">
+<h2>Already have an account?</h2>
+<%= link_to "Sign in", signin_path, :class =>'signup_button round' %>
+</div>

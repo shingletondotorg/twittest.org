@@ -1,0 +1,24 @@
+
+
+
+<div class="main-content" style="min-height: 459px">
+	<div class="page-header">
+		<div id="tweet-box">
+			<h2>What's happening?</h2>
+      		<%= render 'shared/micropost_form' %>
+		</div>
+		<ul class="stream-tabs">
+			<li class="stream-tab-active"><%= link_to "Timeline", root_path, :class => 'tab-text'%></li>
+			<li class="stream-tab"><%= link_to "My Tweets", mytweets_path, :class => 'tab-text'%></li>
+		</ul>
+	</div>
+	<div class="stream-manager">
+	  <div class="stream-container">
+		<%= render 'shared/feed' %>
+	  </div>
+	</div>
+	
+</div>
+<div id="left-pane" class="dashboard">
+	<%= render 'shared/dashboard' %>
+</div>

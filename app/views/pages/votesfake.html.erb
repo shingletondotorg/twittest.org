@@ -1,0 +1,86 @@
+<div class="whole-page-wrapper">
+	<%= render 'shared/score_menu' %>
+		<div class="whole-page left-section" style="background-color:#fff">
+		
+		<script type="text/javascript">
+
+					var pie_vote_fake;
+				
+		
+		$(document).ready(function() {
+			Highcharts.setOptions({
+			    colors: ['#007236', '#9e0b0f','#f7941d']
+			});
+						pie_vote_fake = new Highcharts.Chart({
+							chart: {
+									 renderTo: 'pie-vote-fake',
+									 backgroundColor: '#fff',
+							         plotBackgroundColor: null,
+							         plotBorderWidth: null,
+							         plotShadow: false
+							      },
+							      title: {
+
+										text: ''
+							      },
+							      tooltip: {
+
+							         formatter: function() { var s; if (this.point.name) { s = this.y; } return s; }
+							      },
+							      plotOptions: {
+							         pie: {
+							            allowPointSelect: true,
+							            cursor: 'pointer',
+							            dataLabels: {
+							               enabled: false
+							            },
+							            showInLegend: true
+							         }
+							      },
+								legend:{
+									 backgroundColor: '#fff',
+								},
+							       series: [{
+							         type: 'pie',
+							         name: 'Browser share',
+									color: ['green','red', 'yellow'],
+							         data: [
+							            ['Spotted',  <%= Vote.vote_fake_spotted(current_user) %>],
+										['Fooled',  <%= Vote.vote_fake_fooled(current_user) %>],
+										['Almost',  <%= Vote.vote_fake_partial(current_user) %>]
+							         ]
+							      }]
+						});
+	});
+
+				</script>
+		<div id="pie-vote-fake"		style="width:225px; height:225px;"></div>
+			</div>
+			<div class="whole-page middle-section">
+				<h3>Ranking in <%= current_user.school.name%></h3>
+				<% @school_leaderboard.each do |user| %>
+					<div>
+						<span style="float:right"><%= user.position_in_school_my_votes_fake %> (<%= user.score_my_vote_fake %>)</span>
+						<%= user.name %>
+					</div>
+				<% end %>
+				<hr />
+				<h3>Ranking on Twittest</h3>
+				
+			</div>
+		<div class="whole-page right-section">
+			<h3>This Section</h3>
+			<p>
+				This chart show your progress on correctly identifying when someone is tweeting as another person.
+			</p>
+
+			<hr>
+			<h3>Tips</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida mi eget est 
+				vestibulum hendrerit. Quisque tempor dolor eget quam volutpat venenatis. Vestibulum 
+				ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cum sociis 
+				natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+			</p>
+		</div>
+	</div>

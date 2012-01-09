@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%= csrf_meta_tag %>
+    <%= render 'layouts/stylesheets' %>
+    <%= javascript_include_tag "jquery-1.6.4.min.js", "jquery.rails.js", "highcharts.js", "charCount.js" %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div class="container">
+      <%= render 'layouts/header' %>
+      <section id="content">
+        <div id="container-header">
+			<% flash.each do |key, value| %>
+              <%= content_tag(:div, value, :class => "flash #{key}") %>
+            <% end %>
+		</div>
+		<div id="page-outer">
+			<div id="page-container" class="home-container">
+				<div id="page-node-home">
+					<%= yield %>
+				</div>
+			</div>
+		 </div>
+	
+      </section>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
+</html>
