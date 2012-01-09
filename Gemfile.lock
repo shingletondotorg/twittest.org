@@ -55,6 +55,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
+    mysql (2.8.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -120,6 +121,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.0)
   faker (= 0.3.1)
   gravatar_image_tag
+  mysql
   profanity_filter
   rails (= 3.0.9)
   rake (= 0.9.2)

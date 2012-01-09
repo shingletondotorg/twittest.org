@@ -6,12 +6,13 @@ gem "profanity_filter"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
+
 gem 'gravatar_image_tag'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'rake',  '0.9.2'
 
 group :development do
+  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
   # rspec-rails for Rspec-specific generators (rails generate)
   gem 'rspec-rails', '2.0.0.beta.18'
   gem 'annotate'
@@ -20,12 +21,18 @@ group :development do
 end
 
 group :test do
+  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
   # rspec in :test group for actually running tests
   gem 'rspec', '2.0.0.beta.18'
   # Speeds up rspec
   gem 'spork', '0.8.4'
   gem 'factory_girl_rails', '1.0'
 end
+
+group :production do
+  gem 'mysql'
+end
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
