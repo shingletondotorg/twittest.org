@@ -30,9 +30,6 @@ GEM
     activesupport (3.0.9)
     annotate (2.4.0)
     arel (2.0.10)
-    autotest-fsevent (0.2.5)
-      sys-uname
-    autotest-growl (0.2.11)
     builder (2.1.2)
     capistrano (2.9.0)
       highline
@@ -101,7 +98,6 @@ GEM
       webrat (>= 0.7.0)
     spork (0.8.4)
     sqlite3-ruby (1.2.5)
-    sys-uname (0.8.6)
     thor (0.14.6)
     treetop (1.4.10)
       polyglot
@@ -118,8 +114,6 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  autotest-fsevent
-  autotest-growl
   capistrano
   factory_girl_rails (= 1.0)
   faker (= 0.3.1)

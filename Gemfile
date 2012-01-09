@@ -25,10 +25,10 @@ group :test do
   # Speeds up rspec
   gem 'spork', '0.8.4'
   gem 'factory_girl_rails', '1.0'
-  if RUBY_PLATFORM =~ /darwin/
-    gem 'autotest-growl'
-    gem 'autotest-fsevent'
-  end
+#  if RUBY_PLATFORM =~ /darwin/
+#    gem 'autotest-growl'
+#    gem 'autotest-fsevent'
+#  end
 end
 
 # Use unicorn as the web server
