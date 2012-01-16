@@ -123,7 +123,7 @@ section #page-outer{
 
 section .page-header {
     background: none repeat scroll 0 0 #F5F5F5;
-    border-radius: 5px 5px 0 0;
+    
     padding: 15px 20px 0px;
     position: relative;
     z-index: 2;
@@ -239,7 +239,7 @@ section .stream-item:hover {
 
 
 section #page-container {
-    border-radius: 5px 5px 0px 0px;
+    
     margin: 0 40px;
     overflow: hidden;
     position: relative;
@@ -254,7 +254,7 @@ section #page-node-home{
 
 section #page-node-home .main-content {
 	    background: none repeat scroll 0 0 #FFFFFF;
-	    border-radius: 5px 5px 5px 5px;
+	    
 	    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
 	    display: inline-block;
 	    float: left;
@@ -675,7 +675,6 @@ div.whole-page-wrapper{
 
 div.whole-page-header {
     background: none repeat scroll 0 0 #F5F5F5;
-    border-radius: 5px 5px 0 0;
     margin: -20px -20px 20px;
     padding: 15px 20px 0;
 }
@@ -709,7 +708,7 @@ div.whole-page-header ul.tabs li {
 
 div.whole-page-header ul.tabs li.active a:hover {
     padding-bottom: 3px;
- background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #FFFFFF;
 }
 
 
