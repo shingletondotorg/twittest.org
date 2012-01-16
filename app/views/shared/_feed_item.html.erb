@@ -6,10 +6,27 @@
 	</div>
 	<div class="tweeted-content"><%= wrap(feed_item.content) %></div>
    	<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
+		
+		
+		<div style="padding-top:0px;color: #999999; font-size: 11px;line-height: 15px;">
+			<a onclick="$('#votes-for-<%=feed_item.id%>').toggle();">Vote on Tweet</a> 
+			or 
+			<a onclick="$('#votes-for-<%=feed_item.id%>').toggle();">Start a Conversation</a>
+		</div>
+
+	
+	
+
+		
+		<div id="votes-for-<%=feed_item.id%>" style="display:none; padding:10px 0px 10px 0px">
 		<span style="float:left">Vote on tweet:</span>
 		<% @turing_users.each do |tu| %>
 			<%= button_to tu.name, { :controller => "votes", :action => "create", :vote => { :user_id => current_user.id, :micropost_id => feed_item.id, :vote => tu.id }} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
 		<% end %>
+		</div>
+	
+	
+	
 	</div>
   </div>
 </div>

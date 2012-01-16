@@ -240,11 +240,11 @@ section .stream-item:hover {
 
 section #page-container {
     
-    margin: 0 40px;
+    margin: 0 46px;
     overflow: hidden;
     position: relative;
     text-align: left;
-    width: 920px;
+    width: 910px;
     z-index: 1;
 }
 section #page-node-home{
@@ -254,7 +254,6 @@ section #page-node-home{
 
 section #page-node-home .main-content {
 	    background: none repeat scroll 0 0 #FFFFFF;
-	    
 	    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
 	    display: inline-block;
 	    float: left;
@@ -267,7 +266,7 @@ section #page-node-home .main-content {
 section #page-node-home .dashboard {
 	    border-top-right-radius: 5px;
 	    max-width: 460px;
-	    min-width: 340px;
+	    min-width: 320px;
 	    overflow: hidden;
 	    padding: 12px 20px;
 	    position: relative;
