@@ -1,0 +1,6 @@
+<div class="whole-page-header">
+	<h1><%= current_user.name %>'s Profile</h1>	
+	<ul id="settings_nav" class="tabs" role="navigation">
+	<li <% if (request.request_uri == my_profile_path or request.request_uri == update_profile_path) %>class="active"<% end %>><%= link_to "Account details", my_profile_path %></li>	
+	</ul>
+</div>

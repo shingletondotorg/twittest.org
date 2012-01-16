@@ -33,6 +33,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_profile
+    @title = "My Profile"
+    @user = User.find(current_user.id)
+  end
+
   def edit
     @user = User.find(params[:id])
     @title = "Edit user"
@@ -44,9 +49,19 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated."
       redirect_to @user
     else
-      @title = "Edit user"
+     @title = "Edit user"
       render 'edit'
     end
+  end
+  
+  def update_profile
+     @user = User.find(current_user.id)
+      if @user.update_attributes(params[:user])
+        flash[:success] = "Profile updated."
+      else
+        flash[:error] = "There has been a problem saving your profile."
+      end
+      render 'my_profile'
   end
 
   def destroy

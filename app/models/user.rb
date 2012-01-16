@@ -48,9 +48,110 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
 
+  # ----------------------------------------------------------------------------------------------
+  # leaderboards for scores twitter overall
+
   def self.leaderboard
      User.all.sort_by {|user| - user.score}
   end
+  
+  def self.leaderboard_my_vote_real
+     User.all.sort_by {|user| - user.score_my_vote_real}
+  end 
+  
+  def self.leaderboard_my_vote_fake
+     User.all.sort_by {|user| - user.score_my_vote_fake}
+  end
+  
+  def self.leaderboard_voting_my_real
+     User.all.sort_by {|user| - user.score_voting_my_real}
+  end 
+  
+  def self.leaderboard_voting_my_fake
+     User.all.sort_by {|user| - user.score_voting_my_fake}
+  end
+  
+  # ----------------------------------------------------------------------------------------------
+  # summary leaderboards for position overall
+  
+  def leaderboard_twittest
+    n = User.all.count
+    if n <= 5
+      return User.leaderboard
+    else
+      p = User.leaderboard.index(self)
+    end
+  end
+  
+  def leaderboard_twittest_my_vote_real
+     n = User.all.count
+     if n <= 5
+       return User.leaderboard_my_vote_real
+     else
+       p = User.leaderboard_my_vote_real.index(self)
+       return User.leaderboard_my_vote_real
+     end
+   end
+   
+   def leaderboard_twittest_my_vote_fake
+       n = User.all.count
+       if n <= 5
+         return User.leaderboard_my_vote_fake
+       else
+         p = User.leaderboard_my_vote_fake.index(self)
+         return User.leaderboard_my_vote_fake
+       end
+     end
+
+   def leaderboard_twittest_voting_my_real
+      n = User.all.count
+      if n <= 5
+        return User.leaderboard_voting_my_real
+      else
+        p = User.leaderboard_voting_my_real.index(self)
+        return User.leaderboard_voting_my_real
+      end
+    end
+  
+    def leaderboard_twittest_voting_my_fake
+     n = User.all.count
+     if n <= 5
+       return User.leaderboard_voting_my_fake
+     else
+       p = User.leaderboard_voting_my_fake.index(self)
+       return User.leaderboard_voting_my_fake
+     end
+   end
+  
+
+  # ----------------------------------------------------------------------------------------------
+  # position for user overal on twittest
+  
+  def position_overall
+    (User.leaderboard.index(self) + 1).ordinalize
+  end
+   
+  def position_twittest_my_vote_real
+    (User.leaderboard_my_vote_real.index(self) + 1).ordinalize
+  end
+  
+  def position_twittest_my_vote_fake
+    (User.leaderboard_my_vote_fake.index(self) + 1).ordinalize
+  end
+  
+  def position_twittest_voting_my_real
+    (User.leaderboard_voting_my_real.index(self) + 1).ordinalize
+  end
+  
+  def position_twittest_voting_my_fake
+    (User.leaderboard_voting_my_fake.index(self) + 1).ordinalize
+  end
+  
+  
+  
+  
+  # ----------------------------------------------------------------------------------------------
+  # position in users school
   
   def position_in_school
     (School.find_by_id(self.school_id).users_leaderboard.index(self) + 1).ordinalize
@@ -72,21 +173,10 @@ class User < ActiveRecord::Base
     (School.find_by_id(self.school_id).users_leaderboard_voting_fake.index(self) + 1).ordinalize
   end
   
-  def position_overall
-    (User.leaderboard.index(self) + 1).ordinalize
-  end
+
   
   
-  
-  def leaderboard_twittest
-    n = User.all.count
-    if n <= 5
-      return User.leaderboard
-    else
-      p = User.leaderboard.index(self)
-    end
-  end
-  
+
   
   # ----------------------------------------------------------------------------------------------
   # leaderboards for position in users school

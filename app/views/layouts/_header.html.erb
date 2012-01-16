@@ -12,6 +12,7 @@
 			<% if signed_in? %>
 				<li><%= link_to "My Score", votesreal_path %></li>
 				<li><%= link_to "My Profile", edit_user_path(current_user) %></li>
+				<li><%= link_to "My Profile", my_profile_path %></li>
 				<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
 			<% else %>
 				<li><%= link_to "Sign in", signin_path %></li>
