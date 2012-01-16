@@ -14,7 +14,7 @@
 	<span style="float:left; top:9px; position:relative;">
 	Tweet as: 
 	<% @turing_users.each do |tu| %>
-	  <%= f.radio_button :turing_user_id, tu.id %>
+	  <%= f.radio_button :turing_user_id, tu.id, :checked => tu.name == "Student" ? true : false%>
 	  <%= f.label :turing_user_id, tu.name %>
 	<% end %>
 	</span>
