@@ -57,9 +57,9 @@ class UsersController < ApplicationController
   def update_profile
      @user = User.find(current_user.id)
       if @user.update_attributes(params[:user])
-        flash[:success] = "Profile updated."
+        flash.now[:success] = "Profile updated."
       else
-        flash[:error] = "There has been a problem saving your profile."
+        flash.now[:error] = "There has been a problem saving your profile."
       end
       render 'my_profile'
   end
