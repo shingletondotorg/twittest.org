@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school
+  
+  has_many :conversations
+  has_many :replies, :through => :conversations
 
   # http://railstutorial.org/chapters/modeling-and-viewing-users-one#code:validates_format_of_email
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

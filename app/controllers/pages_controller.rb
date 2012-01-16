@@ -7,6 +7,7 @@ class PagesController < ApplicationController
       @vote = Vote.new
       @feed_items = Micropost.not_voted(:id => current_user.id).paginate(:page => params[:page])
       @turing_users = TuringUser.all
+      @conversation = Conversation.new
       @school_leaderboard = School.leaderboard_summary(current_user.school.id)
       @twittest_leaderboard = current_user.leaderboard_twittest
       @myschool_leaderboard = current_user.leaderboard_school

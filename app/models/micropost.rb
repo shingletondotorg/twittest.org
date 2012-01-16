@@ -6,6 +6,8 @@ class Micropost < ActiveRecord::Base
   belongs_to :turing_user
   has_many :votes
   has_many :voters, :through => :votes
+  
+  has_many :conversations
 
   validates :content, :length => { :maximum => 140 },
                       :presence => true
@@ -26,6 +28,10 @@ class Micropost < ActiveRecord::Base
     joins("LEFT JOIN votes ON votes.micropost_id = microposts.id AND votes.user_id = #{opts[:id]}").where("votes.id IS NULL AND microposts.user_id != #{opts[:id]}")
   }
   
+  scope :not_voted_no_conversation, lambda { | opts | 
+    joins("LEFT JOIN votes ON votes.micropost_id = microposts.id AND votes.user_id = #{opts[:id]} LEFT JOIN conversations ON conversations.micropost_id = microposts.id AND conversations.user_id = #{opts[:id]}").where("votes.id IS NULL AND microposts.user_id != #{opts[:id]} AND conversations.id IS NULL")
+  }
+  
   def has_votes?
     self.votes.count != 0
   end
@@ -34,6 +40,23 @@ class Micropost < ActiveRecord::Base
     self.votes.where("votes.user_id = ?", id).count != 0
   end
   
+  def in_conversation?(id)
+     self.conversations.where("conversations.user_id = ?", id).count != 0
+  end
+
+  def last_to_reply(id)
+    tbl = self.conversations.select("conversations.user_id").where("conversations.user_id = ? OR conversations.user_id = ?", id, self.user_id).order("conversations.created_at DESC").limit(1)
+    if tbl.count > 0 then 
+      u = tbl.slice(0)
+      u.user_id
+    else
+      return 0
+    end 
+  end
+  
+  def conversation_thread(id)
+    self.conversations.where("conversations.user_id = ? OR conversations.user_id = ?", id, self.user_id).order("conversations.created_at DESC")
+  end
   
 end
 

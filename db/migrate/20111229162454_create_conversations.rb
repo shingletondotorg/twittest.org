@@ -2,6 +2,8 @@ class CreateConversations < ActiveRecord::Migration
   def self.up
     create_table :conversations do |t|
       t.references :user
+      t.references :micropost
+      t.string :content
       t.timestamps
     end
   end

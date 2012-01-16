@@ -636,13 +636,15 @@ form.new_micropost textarea {
     color: #333333;
 }
 
-form #charsLeft{
+form .charsLeft{
 	font-size:20px;
 	font-weight:bold;
 	color:#ccc;
 	position: relative;
 	    top: 2px;
 	}
+
+
 
 .tweeted-as{
 	color: #333333;
