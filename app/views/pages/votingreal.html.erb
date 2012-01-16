@@ -68,7 +68,7 @@
 				<h3>Position in Twittest</h3>
 				<% @twittest_leaderboard.each do |user| %>
 					<div>
-						<span style="float:right"><%= user.position_twittest_voting_my_real %> (<%= user.score_voting_my_real %>)</span>
+						<span style="float:right"><%= user.position_twittest_voting_my_real %> </span>
 						<%= user.name %>
 					</div>
 				<% end %>
@@ -76,7 +76,7 @@
 				<h3>Position in <%= current_user.school.name%></h3>
 					<% @school_leaderboard.each do |user| %>
 						<div>
-							<span style="float:right"><%= user.position_in_school_voting_my_real %> (<%= user.score_voting_my_real %>)</span>
+							<span style="float:right"><%= user.position_in_school_voting_my_real %> </span>
 							<%= user.name %>
 						</div>
 					<% end %>
