@@ -66,10 +66,10 @@ class UsersController < ApplicationController
 
   def votes_real
      @title = "My Votes on Real Tweets"
-     @school_leaderboard = current_user.leaderboard_school_my_vote_real
-     @twittest_leaderboard = current_user.leaderboard_twittest_my_vote_real
-   end
-
+     cu = User.find_by_id(current_user.id)
+     @school_leaderboard = cu.leaderboard_school_my_vote_real
+     @twittest_leaderboard = cu.leaderboard_twittest_my_vote_real
+  end
 
   def destroy
     User.find(params[:id]).destroy
