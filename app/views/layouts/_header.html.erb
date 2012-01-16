@@ -3,19 +3,32 @@
     <div id="top-bar"> 
 	  <div class="top-bar-inside">
         <%= link_to logo, root_path %> 
-		<span style="color:#BBBBBB; top: -16px; left: 20px; position:relative; font: 13px 'Helvetica Neue',Helvetica,Arial,sans-serif;">
+		<span class="welcome_name">
 		<% if signed_in? %>	Welcome <%= current_user.name %>! <% end %>
 		</span>
 		<nav>
 			<ul>
-			<li><%= link_to "Home", root_path %></li>	
 			<% if signed_in? %>
+				<li><%= link_to "Home", root_path %></li>	
 				<li><%= link_to "My Score", votesreal_path %></li>
-				<li><%= link_to "My Profile", edit_user_path(current_user) %></li>
 				<li><%= link_to "My Profile", my_profile_path %></li>
 				<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
 			<% else %>
-				<li><%= link_to "Sign in", signin_path %></li>
+			
+				<%= form_for(:session, :url => sessions_path) do |f| %>
+				 
+				    <%= f.label :email, :class => 'signin_label' %>
+				    <%= f.text_field :email, :class => 'signin_field', :style => "-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; width:150px; border-color: #222222; background-color: rgba(255, 255, 255, 0.1); color:#f9f9f9" %>
+			
+				 
+				    <%= f.label :password , :class => 'signin_label' %>
+			
+				   <%= f.password_field :password, :class => 'signin_field', :style => "-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; width:90px; border-color: #222222; background-color: rgba(255, 255, 255, 0.1); color:#f9f9f9" %>
+				    
+				<%= f.submit "Sign in", :class => 'signin_button'%>
+
+				<% end %>
+
 			<% end %>
 			</ul>
 		</nav>

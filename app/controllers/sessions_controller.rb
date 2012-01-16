@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       # Create error message and re-render signin page
       flash.now[:error] = "Invalid email/password combination."
       @title = "Sign in"
-      render 'new'
+      render 'pages/home'
     else
       sign_in user
       redirect_to root_path

@@ -333,12 +333,56 @@ a.signup_button {
 	    width:160px;
 }
 
+.signin_button {
+	background-color: transparent;
+
+    border-style: none;
+
+    color: #bbbbbb !important;
+    cursor: pointer;
+    display: inline-block;
+    font: 12px/15px Helvetica Neue,Arial,"Lucida Grande",Sans-serif;
+    margin-left: 10px;
+    overflow: hidden;
+    height:40px;
+padding-left:10px;
+padding-right:10px;
+  }
+.signin_button:hover {
+
+	   background-color: rgba(255, 255, 255, 0.1);
+	text-color: #FFFFFF;
+    
+
+}
+
+.signin_label {
+		color: #BBBBBB;
+	    font: 13px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	    padding: 0 5px;
+
+}
+
+
+.signin_field {
+
+	    height: 22px;
+	    margin: 0;
+	    padding: 0 8px;
+		
+}
+
+
 /* Round corners */
 .round {
   -moz-border-radius:    5px;
   -webkit-border-radius: 5px;
   border-radius:         5px;
 }
+.welcome_name{
+	color:#BBBBBB; top: -16px; left: 20px; position:relative; font: 13px 'Helvetica Neue',Helvetica,Arial,sans-serif;
+	
+	}
 
 .round-top {
   -moz-border-top-left-radius:    5px;

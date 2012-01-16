@@ -43,9 +43,7 @@ class PagesController < ApplicationController
   def score
     @title = "Score"
   end
-  
 
-  
   def votesreal
     @title = "My Votes on Real Tweets"
     @school_leaderboard = current_user.leaderboard_school_my_vote_real
