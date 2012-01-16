@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password # creates virtual "password" attribute
-  attr_accessible :name, :email, :password, :password_confirmation, :turing_user_id
+  attr_accessible :name, :email, :password, :password_confirmation, :turing_user_id, :school_id
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school
@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   # http://railstutorial.org/chapters/modeling-and-viewing-users-one#code:validates_format_of_email
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+  validates :school_id, :presence => true
+  validates :turing_user_id, :presence => true
+  
   validates :name, :presence => true,
                    :length   => { :maximum => 50 }
   validates :email, :presence => true,
