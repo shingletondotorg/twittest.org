@@ -10,7 +10,7 @@
 			<ul>
 			<% if signed_in? %>
 				<li><%= link_to "Home", root_path %></li>	
-				<li><%= link_to "My Score", votes_real_path %></li>
+				<li><%= link_to "My Score", votesreal_path %></li>
 				<li><%= link_to "My Profile", my_profile_path %></li>
 				<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
 			<% else %>

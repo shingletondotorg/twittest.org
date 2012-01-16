@@ -64,13 +64,6 @@ class UsersController < ApplicationController
       render 'my_profile'
   end
 
-  def votes_real
-     @title = "My Votes on Real Tweets"
-     cu = User.find_by_id(current_user.id)
-     @school_leaderboard = cu.leaderboard_school_my_vote_real
-     @twittest_leaderboard = cu.leaderboard_twittest_my_vote_real
-  end
-
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
