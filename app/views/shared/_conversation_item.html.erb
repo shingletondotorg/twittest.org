@@ -1,7 +1,7 @@
 <div class="stream-item">
   <div class="micropost">
     <div>
-		<span class="tweeted-on">In conversation with: <%=conversation_item.user.name %></span>
+		<span class="tweeted-on">Tweeted <%= time_ago_in_words(conversation_item.micropost.created_at) %> ago</span>
 		<span class="tweeted-as"><%= conversation_item.micropost.turing_user.name %></span>
 	</div>
 	<div class="tweeted-content"><%= wrap(conversation_item.micropost.content) %></div>

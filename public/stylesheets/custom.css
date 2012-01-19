@@ -225,7 +225,7 @@ section .stream-item {
     clear: both;
     display: block;
     margin-top: -1px;
-    min-height: 60px;
+    min-height: 45px;
     outline: medium none;
     position: relative;
 	padding:15px

@@ -7,13 +7,14 @@
 	</div>
 	<div class="tweeted-content"><%= wrap(tweet_item.content) %></div>
 	
-	<% if tweet_item.votes.empty? %>
+	<% if tweet_item.votes.empty? and tweet_item.conversations.empty? %>
 		<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
 			<%= link_to "Delete Tweet", tweet_item, :method => :delete,
 	                                       :confirm => "You sure?",
 	                                       :title => tweet_item.content %>
 		</div>
 	<% else %>
+	  	
 	<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
 		<a onclick="$('#votes-for-<%=tweet_item.id%>').toggle();">Show votes (<%= tweet_item.votes.count %>)</a>
 	</div>
