@@ -7,13 +7,13 @@
 		<ul class="stream-tabs">
 			<li class="stream-tab"><%= link_to "Timeline", root_path, :class => 'tab-text'%></li>
 			<li class="stream-tab"><%= link_to "Vote on Tweets", voteontweets_path, :class => 'tab-text'%></li>
-			<li class="stream-tab-active"><%= link_to "My Tweets", mytweets_path, :class => 'tab-text'%></li>
-			<li class="stream-tab"><%= link_to "My Conversations", myconversations_path, :class => 'tab-text'%></li>
+			<li class="stream-tab"><%= link_to "My Tweets", mytweets_path, :class => 'tab-text'%></li>
+			<li class="stream-tab-active"><%= link_to "My Conversations", myconversations_path, :class => 'tab-text'%></li>
 		</ul>
 	</div>
 	<div class="stream-manager">
 	  <div class="stream-container">
-		<%= render 'shared/tweet' %>
+		<%= render 'shared/conversation' %>
 	  </div>
 	</div>
 </div>

@@ -4,7 +4,10 @@
 	  <div class="top-bar-inside">
         <%= link_to logo, root_path %> 
 		<span class="welcome_name">
-		<% if signed_in? %>	Welcome <%= current_user.name %>! <% end %>
+		<% if signed_in? %>	Welcome <%= current_user.name %>! 
+		<% else %>
+			Are you the twit in twitter?
+		<% end %>
 		</span>
 		<nav>
 			<ul>
@@ -34,6 +37,21 @@
 		</nav>
       </div>
     </div>
-
+<% if !signed_in? %>
+<div id="top-bar">
+<div style="height:35px; background-color:#ffffff; margin-bottom:30px"> 
+	<div class="top-bar-inside" style="text-align:right">
+		<nav>
+		<ul>
+		<li><%= link_to "About", about_path, :class => "signup_button round" %></li>
+	
+		<li><%= link_to "Teachers Pack", signup_path, :class => "signup_button round" %><li>
+				<li><%= link_to "Register Interest", signup_path, :class => "signup_button round" %></li>
+		</ul>
+		</nav>
+	</div>
+	</div>
+</div>
+<% end %>
 </header>
 

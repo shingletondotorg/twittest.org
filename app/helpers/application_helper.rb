@@ -13,4 +13,9 @@ module ApplicationHelper
   def logo
     image_tag("logo.png", :alt => "Twittest")
   end
+  
+  def home_logo
+    image_tag("home_logo.png", :alt => "Twittest")
+  end
+  
 end

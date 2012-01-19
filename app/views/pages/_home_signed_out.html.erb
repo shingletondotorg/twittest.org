@@ -1,35 +1,148 @@
+
 <div class="main-content" style="min-height: 459px">
 	<div class="page-header">
 		<div id="tweet-box">
 			<h2>
-				What's happening?
+				Can you spot the true identity?
 			</h2>
-			<div class="text-area">
-				<textarea class="tweet-editor"></textarea>
-			</div>
-			<div class="tweet-button-container">
-				<a class="tweet-button button" href="#">Tweet</a>
-			</div>
+			
 		</div>
+		<ul class="stream-tabs">
+					<li class="stream-tab-active"><a href="/" class="tab-text">Timeline</a></li>
+					
+				</ul>
+			</div>
+			<div class="stream-manager">
+			  <div class="stream-container">
+				  <div class="stream-item">
+		  <div class="micropost">
+		    <div>
+				<span class="tweeted-on">Tweeted about 6 hours ago</span>
+				<span class="tweeted-as">Student</span>
+			</div>
+			<div class="tweeted-content">new tweet</div>
+			<form accept-charset="UTF-8" action="/microposts" class="new_micropost" id="new_micropost" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="kVEq3bn1kwOpXNgSrb6rocz8YKoNnC4tfDgldZONpUM=" /></div>
+
+			  <div class="text-area">
+
+			   
+			 	<script type="text/javascript">
+				   $('#micropost_content').limit('140','#charsLeft');
+				</script>
+				</div> 
+			  <div class="tweet-button-container">
+
+
+				<span style="float:left; top:9px; position:relative;">
+				Is the author of the tweet a
+				  <input checked="checked" id="micropost_turing_user_id_2" name="micropost[turing_user_id]" type="radio" value="2" />
+				  <label for="micropost_turing_user_id">Student</label>
+
+				  <input id="micropost_turing_user_id_3" name="micropost[turing_user_id]" type="radio" value="3" />
+				  <label for="micropost_turing_user_id">Teacher</label>
+				  <input id="micropost_turing_user_id_4" name="micropost[turing_user_id]" type="radio" value="4" />
+				  <label for="micropost_turing_user_id">Celebrity</label>
+				  <input id="micropost_turing_user_id_5" name="micropost[turing_user_id]" type="radio" value="5" />
+				  <label for="micropost_turing_user_id">Twitbot</label>
+				</span>
+
+
+
+				<span id="charsLeft" class="charsLeft"></span>
+
+				<script type="text/javascript">
+				    var val = $('#micropost_content').val();
+					var length = val.length;
+					length = 140 - length;
+					$('#charsLeft').text(length);
+				</script>
+				<input style="margin-left: 30px" class="button" id="micropost_submit" name="commit" type="submit" value="Vote" />
+			  </div>
+			</form>
+			
+			
+		  </div>
+		</div>
+		<div class="stream-item">
+		  <div class="micropost">
+		    <div>
+				<span class="tweeted-on">Tweeted about 15 hours ago</span>
+				<span class="tweeted-as">Student</span>
+			</div>
+			<div class="tweeted-content">duncan tweet</div>
+		  
+				<form accept-charset="UTF-8" action="/microposts" class="new_micropost" id="new_micropost" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="kVEq3bn1kwOpXNgSrb6rocz8YKoNnC4tfDgldZONpUM=" /></div>
+
+				  <div class="text-area">
+
+
+				 	<script type="text/javascript">
+					   $('#micropost_content').limit('140','#charsLeft');
+					</script>
+					</div> 
+				  <div class="tweet-button-container">
+
+
+					<span style="float:left; top:9px; position:relative;">
+					Is the author of the tweet a
+					  <input checked="checked" id="micropost_turing_user_id_2" name="micropost[turing_user_id]" type="radio" value="2" />
+					  <label for="micropost_turing_user_id">Student</label>
+
+					  <input id="micropost_turing_user_id_3" name="micropost[turing_user_id]" type="radio" value="3" />
+					  <label for="micropost_turing_user_id">Teacher</label>
+					  <input id="micropost_turing_user_id_4" name="micropost[turing_user_id]" type="radio" value="4" />
+					  <label for="micropost_turing_user_id">Celebrity</label>
+					  <input id="micropost_turing_user_id_5" name="micropost[turing_user_id]" type="radio" value="5" />
+					  <label for="micropost_turing_user_id">Twitbot</label>
+					</span>
+
+
+
+					<span id="charsLeft" class="charsLeft"></span>
+
+					<script type="text/javascript">
+					    var val = $('#micropost_content').val();
+						var length = val.length;
+						length = 140 - length;
+						$('#charsLeft').text(length);
+					</script>
+					<input style="margin-left: 30px" class="button" id="micropost_submit" name="commit" type="submit" value="Vote" />
+				  </div>
+				</form>
+		
+		</div>
+		</div>
+		<div class="stream-item">
+		  <div class="micropost">
+		    <div>
+				<span class="tweeted-on">Tweeted about 16 hours ago</span>
+				<span class="tweeted-as">Student</span>
+			</div>
+			<div class="tweeted-content">asdasdasdasd</div>
+		  </div>
+		</div>
+		<div class="stream-item">
+		  <div class="micropost">
+		    <div>
+				<span class="tweeted-on">Tweeted about 24 hours ago</span>
+				<span class="tweeted-as">Student</span>
+			</div>
+			<div class="tweeted-content">sadsadasdsd</div>
+		  </div>
+		</div>
+		</div>
+		
 	</div>
 </div>
 <div id="left-pane" class="dashboard">
-	<h2>About Twittest</h2>
+	<h2>Are you the twit in twitter?</h2>
 	<p>
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique fermentum urna, 
-	ac posuere leo hendrerit ut. Praesent pellentesque purus quis metus venenatis dignissim 
-	ut eget libero. Morbi in lacus mi, vitae cursus felis. Duis tincidunt, turpis nec fermentum 
-	ultrices, odio turpis tincidunt lacus, eu auctor mauris tortor in justo. In pretium nulla eget 
-	urna fringilla eget facilisis diam ullamcorper. 
+		Twittest is a playful project for children and adults to explore identity across social networks. Loosely based upon the Turing Test, the game is simple: Can you spot the real students, teachers, celebrities and bots from the fakers by reading their tweets? And can you successfully fake being someone else?
 	</p>
+	<p>
+		Twittest looks and feels like Twitter, only in Twittest you get to choose who you want to pretend to be, and let others vote on you. You get points for faking your identity and spotting the identity of other peoples tweets.
+	</p>
+	<div style="width:330px; height:248px; background-color:#fff">
+	</div>
 
-	<h2>How to Play</h2>
-	<p>
-		Duis accumsan ipsum id velit iaculis euismod. 
-		Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-		Maecenas urna orci, suscipit eget malesuada vitae, faucibus nec augue. Morbi iaculis mattis
-		 purus ut varius. Integer ac velit turpis.
-	</p>
-	
-	<%= link_to "Sign up for a public account now!", signup_path, :class => "signup_button round" %>
 </div>

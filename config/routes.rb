@@ -4,6 +4,9 @@ SampleApp::Application.routes.draw do
   get 'my_profile' => 'users#my_profile', :as => :my_profile # my_profile_path => "/profiles/my_profile"
   put '/users/update_profile' => 'users#update_profile', :as => :update_profile
   
+  
+  match '/myconverstaions', :to => 'pages#myconversations', :as => :myconversations
+  
   resources :users, do
     resources :microposts, :only => [:index]
   end
@@ -13,6 +16,7 @@ SampleApp::Application.routes.draw do
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy] 
   resources :conversations
+   resources :conversation_threads, :only => [:create]
 
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
@@ -27,8 +31,9 @@ SampleApp::Application.routes.draw do
   match '/votingfake', :to => 'pages#votingfake'
 
 
- 
+  match '/voteontweets', :to => 'pages#voteontweets'
   match '/mytweets', :to => 'pages#mytweets'
+
   
   # match 'users/:id/update_profile', :to =>'users#update_profile'
   #match 'users(/update_profile(/:id))',  :to =>'users#update_profile'

@@ -52,7 +52,24 @@ class School < ActiveRecord::Base
       return School.leaderboard
    else
        p = School.leaderboard.index(id)
-    
+       case p
+       when  0
+         return School.leaderboard.slice(0..4)
+       when 1
+         return School.leaderboard.slice(0..4)
+       else
+         if p == n-1
+             s = p-4
+             e = n    
+         elsif p == n-2
+             s = p-3
+             e = n
+         else
+           s = p - 2
+           e = p + 2
+         end
+         return School.leaderboard.slice(s..e)
+       end
    end  
   
   end

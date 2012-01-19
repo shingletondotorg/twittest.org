@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school
-  
-  has_many :conversations
-  has_many :replies, :through => :conversations
+
+  has_many :conversations, :through => :microposts
+
 
   # http://railstutorial.org/chapters/modeling-and-viewing-users-one#code:validates_format_of_email
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -27,12 +27,17 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
                        
- 
+  
+
   
   before_save :encrypt_password
 
   def feed
     Micropost.where("user_id = ?", id)
+  end
+  
+  def my_conversations
+    microposts.joins("INNER JOIN conversations ON conversations.micropost_id = microposts.id INNER JOIN conversation_threads ON conversations.id = conversation_threads.conversation_id LEFT JOIN votes ON votes.micropost_id = microposts.id  AND votes.user_id = conversations.user_id").where("votes.id IS NULL AND microposts.user_id = #{self.id}")
   end
 
   # Return true if user's password matches submitted_password
@@ -57,6 +62,8 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------------------------------------------
   # leaderboards for scores twitter overall
 
+  
+
   def self.leaderboard
      User.all.sort_by {|user| - user.score}
   end
@@ -80,32 +87,53 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------------------------------------------
   # summary leaderboards for position overall
   
+  def split_leaderboard(n, rs)
+     p = rs.index(self)
+
+      case p
+      when  0
+        return rs.slice(0..4)
+      when 1
+        return rs.slice(0..4)
+      else
+        if p == n-1
+            s = p-4
+            e = n    
+        elsif p == n-2
+            s = p-3
+            e = n
+        else
+          s = p - 2
+          e = p + 2
+        end
+        return rs.slice(s..e)
+      end
+  end
+  
   def leaderboard_twittest
     n = User.all.count
     if n <= 5
       return User.leaderboard
     else
-      p = User.leaderboard.index(self)
+      split_leaderboard(n, User.leaderboard)
     end
   end
   
   def leaderboard_twittest_my_vote_real
-     n = User.all.count
-     if n <= 5
-       return User.leaderboard_my_vote_real
-     else
-       p = User.leaderboard_my_vote_real.index(self)
-       return User.leaderboard_my_vote_real
-     end
-   end
+    n = User.all.count
+    if n <= 5
+      return User.leaderboard_my_vote_real
+    else
+      split_leaderboard(n, User.leaderboard_my_vote_real)
+    end
+  end
    
    def leaderboard_twittest_my_vote_fake
        n = User.all.count
        if n <= 5
          return User.leaderboard_my_vote_fake
        else
-         p = User.leaderboard_my_vote_fake.index(self)
-         return User.leaderboard_my_vote_fake
+         split_leaderboard(n, User.leaderboard_my_vote_fake)
        end
      end
 
@@ -114,8 +142,7 @@ class User < ActiveRecord::Base
       if n <= 5
         return User.leaderboard_voting_my_real
       else
-        p = User.leaderboard_voting_my_real.index(self)
-        return User.leaderboard_voting_my_real
+        split_leaderboard(n, User.leaderboard_voting_my_real)
       end
     end
   
@@ -124,8 +151,7 @@ class User < ActiveRecord::Base
      if n <= 5
        return User.leaderboard_voting_my_fake
      else
-       p = User.leaderboard_voting_my_fake.index(self)
-       return User.leaderboard_voting_my_fake
+       split_leaderboard(n, User.leaderboard_voting_my_fake)
      end
    end
   
@@ -192,7 +218,7 @@ class User < ActiveRecord::Base
     if n <= 5
       return School.find_by_id(self.school_id).users_leaderboard
     else
-      p = School.find_by_id(self.school_id).users_leaderboard.index(self) 
+       split_leaderboard(n, School.find_by_id(self.school_id).users_leaderboard)
     end
   end
   
@@ -201,7 +227,7 @@ class User < ActiveRecord::Base
       if n <= 5
         return School.find_by_id(self.school_id).users_leaderboard_votes_real
       else
-        p = School.find_by_id(self.school_id).users_leaderboard_votes_real.index(self) 
+        split_leaderboard(n, School.find_by_id(self.school_id).users_leaderboard_votes_real)
       end
   end
   
@@ -210,7 +236,7 @@ class User < ActiveRecord::Base
       if n <= 5
         return School.find_by_id(self.school_id).users_leaderboard_votes_fake
       else
-        p = School.find_by_id(self.school_id).users_leaderboard_votes_fake.index(self) 
+         split_leaderboard(n, School.find_by_id(self.school_id).users_leaderboard_votes_fake)
       end
   end
   
@@ -219,7 +245,7 @@ class User < ActiveRecord::Base
       if n <= 5
         return School.find_by_id(self.school_id).users_leaderboard_voting_real
       else
-        p = School.find_by_id(self.school_id).users_leaderboard_voting_real.index(self) 
+        split_leaderboard(n, School.find_by_id(self.school_id).users_leaderboard_voting_real)
       end
   end
   
@@ -228,7 +254,7 @@ class User < ActiveRecord::Base
       if n <= 5
         return School.find_by_id(self.school_id).users_leaderboard_voting_fake
       else
-        p = School.find_by_id(self.school_id).users_leaderboard_voting_fake.index(self) 
+        split_leaderboard(n, School.find_by_id(self.school_id).users_leaderboard_voting_fake)
       end
   end
   
