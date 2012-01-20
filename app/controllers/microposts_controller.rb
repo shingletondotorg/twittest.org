@@ -8,6 +8,12 @@ class MicropostsController < ApplicationController
 
   def create
     #raise params[:user].inspect
+    
+    if params[:micropost][:content].empty?
+      flash[:error] = "There has been a problem saving your tweet.  You must enter a message."
+       redirect_to request.referer
+    else
+
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
       flash[:success] = "Tweet created!"
@@ -16,6 +22,7 @@ class MicropostsController < ApplicationController
       @feed_items = []
       render 'pages/home'
     end
+  end
   end
 
   def destroy

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
   
   def my_conversations
-    conversations.joins( "LEFT JOIN votes ON votes.micropost_id = conversations.micropost_id AND votes.user_id = conversations.user_id").where("votes.id IS NULL")
+    conversations.joins( "LEFT JOIN votes ON votes.micropost_id = conversations.micropost_id AND votes.user_id = conversations.user_id").where("votes.id IS NULL").order("conversations.created_at DESC")
   end
 
   # Return true if user's password matches submitted_password

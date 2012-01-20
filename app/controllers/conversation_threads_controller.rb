@@ -30,7 +30,7 @@ class ConversationThreadsController < ApplicationController
 
     
     
-    redirect_to voteontweets_path
+    redirect_to request.referer
   end
   
 end
