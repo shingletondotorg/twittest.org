@@ -10,11 +10,11 @@
     <div class="container">
       <%= render 'layouts/header' %>
       <section id="content">
-        <div id="container-header">
-			<% flash.each do |key, value| %>
-              <%= content_tag(:div, value, :class => "flash #{key}") %>
-            <% end %>
-		</div>
+       <div id="container-header">
+	     <% flash.each do |key, value| %>
+           <%= content_tag(:div, value, :class => "flash #{key}") %>
+         <% end %>
+	    </div>
 		<div id="page-outer">
 			<div id="page-container" class="home-container">
 				<div id="page-node-home">

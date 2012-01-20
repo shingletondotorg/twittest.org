@@ -44,7 +44,7 @@ class PagesController < ApplicationController
     @title = "My Conversations"
     if signed_in?
         @micropost = Micropost.new
-        @feed_items = current_user.conversations.paginate(:page => params[:page])
+        @feed_items = current_user.my_conversations.paginate(:page => params[:page])
         @turing_users = TuringUser.all
         @conversation_thread = ConversationThread.new
         @school_leaderboard = School.leaderboard_summary(current_user.school.id)

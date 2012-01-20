@@ -17,7 +17,7 @@
 				<li><%= link_to "My Profile", my_profile_path %></li>
 				<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
 			<% else %>
-			
+
 				<%= form_for(:session, :url => sessions_path) do |f| %>
 				 
 				    <%= f.label :email, :class => 'signin_label' %>
@@ -26,32 +26,23 @@
 				 
 				    <%= f.label :password , :class => 'signin_label' %>
 			
-				   <%= f.password_field :password, :class => 'signin_field', :style => "-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; width:90px; border-color: #222222; background-color: rgba(255, 255, 255, 0.1); color:#f9f9f9" %>
+				   <%= f.password_field :password, :class => 'signin_field', :style => "-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; width:100px; border-color: #222222; background-color: rgba(255, 255, 255, 0.1); color:#f9f9f9" %>
 				    
 				<%= f.submit "Sign in", :class => 'signin_button'%>
-
+			
 				<% end %>
 
 			<% end %>
 			</ul>
 		</nav>
-      </div>
-    </div>
-<% if !signed_in? %>
-<div id="top-bar">
-<div style="height:35px; background-color:#ffffff; margin-bottom:30px"> 
-	<div class="top-bar-inside" style="text-align:right">
-		<nav>
-		<ul>
-		<li><%= link_to "About", about_path, :class => "signup_button round" %></li>
+      
+		
+		
+	</div>
 	
-		<li><%= link_to "Teachers Pack", signup_path, :class => "signup_button round" %><li>
-				<li><%= link_to "Register Interest", signup_path, :class => "signup_button round" %></li>
-		</ul>
-		</nav>
-	</div>
-	</div>
-</div>
-<% end %>
+ </div>
+	
+
+
 </header>
 
