@@ -1,6 +1,7 @@
+require "rubygems"
 require "net/http"
 require "uri"
-require 'nokogiri'
+require "nokogiri"
 
 class ConversationThread < ActiveRecord::Base
   belongs_to :user
