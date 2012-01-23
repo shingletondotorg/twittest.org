@@ -122,6 +122,7 @@ DEPENDENCIES
   faker (= 0.3.1)
   gravatar_image_tag
   mysql
+  nokogiri
   profanity_filter
   rails (= 3.0.9)
   rake (= 0.9.2.2)
