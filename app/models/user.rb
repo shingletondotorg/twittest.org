@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password # creates virtual "password" attribute
-  attr_accessible :name, :email, :password, :password_confirmation, :turing_user_id, :school_id
+  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school
@@ -16,8 +16,10 @@ class User < ActiveRecord::Base
   validates :school_id, :presence => true
   validates :turing_user_id, :presence => true
   
-  validates :name, :presence => true,
+  validates :first_name, :presence => true,
                    :length   => { :maximum => 50 }
+  validates :last_name, :presence => true,
+                    :length   => { :maximum => 50 }               
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }

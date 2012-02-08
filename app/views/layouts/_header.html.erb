@@ -4,7 +4,7 @@
 	  <div class="top-bar-inside">
         <%= link_to logo, root_path %> 
 		<span class="welcome_name">
-		<% if signed_in? %>	Welcome <%= current_user.name %>! 
+		<% if signed_in? %>	Welcome <%= current_user.display_name %>! 
 		<% else %>
 			Are you the twit in twitter?
 		<% end %>

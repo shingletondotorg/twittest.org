@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @title = @user.name
   end
 
-  def create
+  def create    
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "Welcome to Twittest!"
@@ -55,6 +55,9 @@ class UsersController < ApplicationController
   end
   
   def update_profile
+     
+     
+     
      @user = User.find(current_user.id)
       if @user.update_attributes(params[:user])
         flash.now[:success] = "Profile updated."

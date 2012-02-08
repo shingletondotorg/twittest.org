@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120118105824) do
+ActiveRecord::Schema.define(:version => 20120206154424) do
 
   create_table "conversation_threads", :force => true do |t|
     t.integer  "conversation_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20120118105824) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20120118105824) do
     t.boolean  "admin",              :default => false
     t.integer  "turing_user_id"
     t.integer  "school_id"
+    t.string   "last_name"
+    t.string   "display_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

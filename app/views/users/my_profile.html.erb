@@ -4,14 +4,22 @@
 	<% form_for @user,  :url=>{:controller=> "users", :action=>"update_profile"}, :method => :put do |f| %>
 	  <%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
-	  <%= f.label :name %><br />
-	  <%= @user.name %>
+	  <%= f.label :first_name %><br />
+	   <%= @user.first_name %>
 	</div>
+	<div class="field">
+	  <%= f.label :last_name %><br />
+	   <%= @user.last_name %>
+	</div>
+
 	<div class="field">
 	  <%= f.label :email %><br />
 	  <%= @user.email %>
 	</div>
-	
+	<div class="field">
+	  <%= f.label :display_name %><br />
+	  <%= f.text_field :display_name %>
+	</div>
 	<div class="field">
 	  <%= f.label :password %><br />
 	  <%= f.password_field :password %>

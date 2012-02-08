@@ -62,7 +62,7 @@
 					<% @twittest_leaderboard.each do |user| %>
 						<div>
 							<span style="float:right"><%= user.position_twittest_my_vote_fake %> </span>
-							<%= user.name %>
+							<%= user.display_name %>
 						</div>
 					<% end %>
 					
@@ -71,7 +71,7 @@
 				<% @school_leaderboard.each do |user| %>
 					<div>
 						<span style="float:right"><%= user.position_in_school_my_votes_fake %> </span>
-						<%= user.name %>
+						<%= user.display_name %>
 					</div>
 				<% end %>
 				
