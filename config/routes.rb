@@ -43,6 +43,8 @@ SampleApp::Application.routes.draw do
   match '/activitytwo', :to => 'pages#activitytwo'
   match '/activitythree', :to => 'pages#activitythree'
   match '/activityfour', :to => 'pages#activityfour'
+  
+   match '/interest', :to => 'pages#interest'
 
   
   # match 'users/:id/update_profile', :to =>'users#update_profile'

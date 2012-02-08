@@ -126,5 +126,9 @@ class PagesController < ApplicationController
     @title = "Activity 4 - Logging and Trial Twittest"
   end
   
+  def interest
+     @title = "Register Your Interest"
+  end
+  
 
 end
