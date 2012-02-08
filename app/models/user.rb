@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password # creates virtual "password" attribute
-  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id
+  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id, :voting_fake
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school

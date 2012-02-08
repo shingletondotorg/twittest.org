@@ -2,8 +2,8 @@
     
     <div id="top-bar"> 
 	  <div class="top-bar-inside">
-        <%= link_to logo, root_path %> 
-		<span class="welcome_name">
+       <%= link_to logo, root_path , :style => "position:inherit; top:3px;"%> 
+		<span class="welcome_name" style="position:inherit;top:-4px;">
 		<% if signed_in? %>	Welcome <%= current_user.display_name %>! 
 		<% else %>
 			Are you the twit in twitter?
