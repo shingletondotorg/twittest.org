@@ -5,7 +5,7 @@ SampleApp::Application.routes.draw do
   put '/users/update_profile' => 'users#update_profile', :as => :update_profile
   
   
-  match '/myconverstaions', :to => 'pages#myconversations', :as => :myconversations
+  match '/myconversations', :to => 'pages#myconversations', :as => :myconversations
   
   resources :users, do
     resources :microposts, :only => [:index]
@@ -24,7 +24,12 @@ SampleApp::Application.routes.draw do
 
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about'
+  match '/twitter', :to => 'pages#twitter'
+  match '/chatbots', :to => 'pages#chatbots'
+  
   match '/help', :to => 'pages#help'
+  match '/communications', :to => 'pages#communications'
+  match '/winning', :to => 'pages#winning'
   match '/votesreal', :to => 'pages#votesreal'
   match '/votesfake', :to => 'pages#votesfake'
   match '/votingreal', :to => 'pages#votingreal'
@@ -33,6 +38,11 @@ SampleApp::Application.routes.draw do
 
   match '/voteontweets', :to => 'pages#voteontweets'
   match '/mytweets', :to => 'pages#mytweets'
+  
+  match '/activityone', :to => 'pages#activityone'
+  match '/activitytwo', :to => 'pages#activitytwo'
+  match '/activitythree', :to => 'pages#activitythree'
+  match '/activityfour', :to => 'pages#activityfour'
 
   
   # match 'users/:id/update_profile', :to =>'users#update_profile'

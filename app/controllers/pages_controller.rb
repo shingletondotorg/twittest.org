@@ -59,12 +59,27 @@ class PagesController < ApplicationController
   end
 
   def about
-    @title = "About"
+    @title = "About Turing Test"
+  end
+  
+  def twitter
+    @title = "About Twitter"
+  end
+  
+  def chatbots
+    @title = "About Chatbots"
+  end
+  
+  def communications
+    @title = "Deception and Online Communication"
   end
 
+  def winning
+    @title = "Strategies for Winning"
+  end
+  
   def help
     @title = "Help"
-    
   end
   
   def score
@@ -94,5 +109,22 @@ class PagesController < ApplicationController
     @school_leaderboard = current_user.leaderboard_school_voting_my_fake
     @twittest_leaderboard = current_user.leaderboard_twittest_voting_my_fake
   end
+  
+  def activityone
+    @title = "Activity 1 - Turing Test Groups"
+  end
+  
+  def activitytwo
+    @title = "Activity 2 - Tweet Cards"
+  end
+  
+  def activitythree
+    @title = "Activity 3 - Identity Play"
+  end
+  
+  def activityfour
+    @title = "Activity 4 - Logging and Trial Twittest"
+  end
+  
 
 end

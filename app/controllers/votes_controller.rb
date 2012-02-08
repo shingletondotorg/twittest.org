@@ -9,10 +9,10 @@ class VotesController < ApplicationController
      @vote = Vote.new(params[:vote])
       if @vote.save
         flash[:success] = "Vote cast!"
-        redirect_to root_path
+        redirect_to request.referer
       else
-         @feed_items = []
-          render 'pages/home'
+        @feed_items = []
+        redirect_to request.referer
       end
   end
   
