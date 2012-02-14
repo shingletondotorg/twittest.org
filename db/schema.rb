@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206154424) do
+ActiveRecord::Schema.define(:version => 20120214133427) do
 
   create_table "conversation_threads", :force => true do |t|
     t.integer  "conversation_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120206154424) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "visible"
   end
 
   create_table "turing_users", :force => true do |t|

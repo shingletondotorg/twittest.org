@@ -26,5 +26,9 @@ class SchoolsController < ApplicationController
      @title = @school.name
   end
   
-
+  def edit
+    @school = School.find(params[:id])
+    @title = "Edit school"
+  end
+ 
 end

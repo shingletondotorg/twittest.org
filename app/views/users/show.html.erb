@@ -18,10 +18,10 @@
 <div id="left-pane" class="dashboard">
       <h2>
         <%= gravatar_for @user %>
-        <%= @user.name %>
+        <%= @user.first_name %> <%= @user.last_name %>
       </h2>
     
-      <strong>Name</strong> <%= @user.name %><br />
+      <strong>Name</strong>  <%= @user.first_name %> <%= @user.last_name %><br />
       <strong>URL</strong>  <%= link_to user_path(@user), @user %><br />
       <strong>Microposts</strong>  <%= @user.microposts.count %>
     </div>

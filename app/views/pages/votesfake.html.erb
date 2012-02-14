@@ -58,6 +58,7 @@
 		</div>
 		<div class="whole-page middle-section">
 			
+				<% if current_user.school.visible %>
 				<h3>Position in Twittest</h3>
 					<% @twittest_leaderboard.each do |user| %>
 						<div>
@@ -67,6 +68,7 @@
 					<% end %>
 					
 				<hr />	
+				<% end %>
 				<h3>Position in <%= current_user.school.name%></h3>
 				<% @school_leaderboard.each do |user| %>
 					<div>

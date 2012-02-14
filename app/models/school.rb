@@ -7,7 +7,7 @@ class School < ActiveRecord::Base
   
   
   def self.leaderboard
-    School.all.sort_by {|school| - school.score}
+    School.where(:visible => true).sort_by {|school| - school.score}
   end
   
   def position_overall

@@ -4,7 +4,7 @@
 </div>
 
 <hr />
-
+<% if current_user.school.visible %>
 <h2>Position overall in Twittest: <%= current_user.position_overall %></h2>
 <% @twittest_leaderboard.each do |user| %>
 	<div>
@@ -12,8 +12,8 @@
 		<%= user.display_name %>
 	</div>
 <% end %>
-
 <hr />
+<% end %>
 
 <h2>Position in my school: <%= current_user.position_in_school %></h2>
 <% @myschool_leaderboard.each do |user| %>
@@ -25,11 +25,13 @@
 
 <hr />
 
+<% if current_user.school.visible %>
 <h2>Position of my School in Twittest: <%= current_user.school.position_overall %></h2>
 <% @school_leaderboard.each do |school| %>
 	<div>
 		<span style="float:right"><%= school.position_overall %></span>
 		<%= school.name %>
 	</div>
+<% end %>
 <% end %>
 
