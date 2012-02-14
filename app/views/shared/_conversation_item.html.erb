@@ -1,11 +1,16 @@
 <div class="stream-item">
+
   <div class="micropost">
-    <div>
+    
+<div>
+	<div style="float:left;margin-right:13px"><%=image_tag "tweet_icon.png", :style=>"height:40px; width:54px; position:relative; top:-4px" %></div>
+	<div>
 		<span class="tweeted-on">Tweeted <%= time_ago_in_words(conversation_item.micropost.created_at) %> ago</span>
 		<span class="tweeted-as"><%= conversation_item.micropost.turing_user.name %></span>
 	</div>
 	<div class="tweeted-content"><%= wrap(conversation_item.micropost.content) %></div>
-   	<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
+</div>   	
+<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
 			<div style="padding-top:0px;color: #999999; font-size: 11px;line-height: 15px;">
 			<% display_reply = true %>
 				<a onclick="$('#reply-for-<%=conversation_item.id%>').toggle();">
@@ -22,12 +27,17 @@
 					<div>
 						<% conversation_item.conversation_threads.each do |r| %>
 						 
-						<% if r.user_id == current_user.id %>
-						 <div style="text-align: right;">
-						<% else %>
-						 <div>
-						<% end %>
-						<%= r.content %></div>
+							<% if r.user_id == current_user.id %>
+							 <div style="text-align:right;height:25px; cursor:pointer; ">
+									<span style="padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe;  "> 
+							<% else %>
+							 <div style="clear:both; height:25px">
+									<span style="padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe; color:#666666"> 
+							<% end %>
+							
+						<%= r.content %></span>
+						</div>
+					
 						<% end %>
 
 					</div>

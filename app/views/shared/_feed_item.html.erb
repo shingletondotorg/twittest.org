@@ -1,9 +1,13 @@
 <div class="stream-item">
   <div class="micropost">
     <div>
+		<div style="float:left;margin-right:13px"><%=image_tag "tweet_icon.png", :style=>"height:40px; width:54px; position:relative; top:-4px" %></div>
+	
+	<div>
 		<span class="tweeted-on">Tweeted <%= time_ago_in_words(feed_item.created_at) %> ago</span>
 		<span class="tweeted-as"><%= feed_item.turing_user.name %></span>
 	</div>
 	<div class="tweeted-content"><%= wrap(feed_item.content) %></div>
   </div>
+</div>
 </div>
