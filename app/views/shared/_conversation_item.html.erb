@@ -32,10 +32,13 @@
 									<span style="padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe;  "> 
 							<% else %>
 							 <div style="clear:both; height:25px">
-									<span style="padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe; color:#666666"> 
+									<%=image_tag "conversation_left.png", :style=>"height:22px; width:30px; position:relative; top:-4px" %><span style="padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe; color:#666666"> 
 							<% end %>
 							
-						<%= r.content %></span>
+						<%= r.content %>
+						
+							</span>
+							<% if r.user_id == current_user.id %>	<%=image_tag "conversation_right.png", :style=>"height:22px; width:30px; position:relative; top:-4px" %><% end %>
 						</div>
 					
 						<% end %>
