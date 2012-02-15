@@ -67,23 +67,23 @@ class User < ActiveRecord::Base
   
 
   def self.leaderboard
-     User.joins(:school).where("schools.visible = 't' or schools.visible = 1").sort_by {|user| - user.score}
+     User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score}
   end
   
   def self.leaderboard_my_vote_real
-      User.joins(:school).where("schools.visible = 't' or schools.visible = 1").sort_by {|user| - user.score_my_vote_real}
+      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_my_vote_real}
   end 
   
   def self.leaderboard_my_vote_fake
-      User.joins(:school).where("schools.visible = 't' or schools.visible = 1").sort_by {|user| - user.score_my_vote_fake}
+      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_my_vote_fake}
   end
   
   def self.leaderboard_voting_my_real
-      User.joins(:school).where("schools.visible = 't' or schools.visible = 1").sort_by {|user| - user.score_voting_my_real}
+      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_voting_my_real}
   end 
   
   def self.leaderboard_voting_my_fake
-      User.joins(:school).where("schools.visible = 't' or schools.visible = 1").sort_by {|user| - user.score_voting_my_fake}
+      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_voting_my_fake}
   end
   
   # ----------------------------------------------------------------------------------------------
