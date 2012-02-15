@@ -47,8 +47,8 @@ class School < ActiveRecord::Base
   end
   
   def self.leaderboard_summary(id)
-   n = School.all.count
-   if n < 5
+   n = School.where(:visible => true).count
+   if n <= 5
       return School.leaderboard
    else
        p = School.leaderboard.index(id)
