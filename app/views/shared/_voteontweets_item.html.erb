@@ -28,8 +28,7 @@
 			    		<% 
 			   			display_reply = false
 						else 
-					
-					%>
+						%>
 							Reply to Conversation
 					<% end %>
 				</a>
@@ -40,7 +39,9 @@
 		<div id="votes-for-<%=voteontweets_item.id%>" style="display:none; padding:10px 0px 10px 0px">
 			<span style="float:left">Who is the author of this tweet?</span>
 			<% @turing_users.each do |tu| %>
-				<%= button_to tu.name, { :controller => "votes", :action => "create", :vote => { :user_id => current_user.id, :micropost_id => voteontweets_item.id, :vote => tu.id }} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+				<span onClick="$('#votes-for-<%=voteontweets_item.id%>').toggle();">
+					<%= button_to tu.name, { :controller => "votes", :action => "create", :vote => { :user_id => current_user.id, :micropost_id => voteontweets_item.id, :vote => tu.id }} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+				</span>
 			<% end %>
 		</div>
 		<div id="reply-for-<%=voteontweets_item.id%>" style="display:none; padding:10px 0px 10px 0px">

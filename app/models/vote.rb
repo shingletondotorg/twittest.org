@@ -4,6 +4,7 @@ class Vote < ActiveRecord::Base
  
   attr_accessible :user_id, :micropost_id, :vote
   
+  validates :user_id, :uniqueness => {:scope => :micropost_id}
 
   def self.vote_real_correct(id)
     n = Vote.joins( :micropost => :user ).where( "votes.vote = microposts.turing_user_id AND microposts.turing_user_id = users.turing_user_id AND microposts.user_id != ? AND votes.user_id = ?" ,id, id ).count
