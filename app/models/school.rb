@@ -19,34 +19,33 @@ class School < ActiveRecord::Base
   # users in school leaderboards
  
   def users_leaderboard
-    self.users.sort_by {|user| - user.score}
+    self.users.order("users.total_score DESC").where("users.has_voted" => true)
   end
   
   def users_leaderboard_votes_real
-    self.users.sort_by {|user| - user.score_my_vote_real}
+     self.users.order("users.votes_real DESC").where("users.has_voted" => true)
   end
   
   def users_leaderboard_votes_fake
-    self.users.sort_by {|user| - user.score_my_vote_fake}
+     self.users.order("users.votes_fake DESC").where("users.has_voted" => true)
   end
   
   def users_leaderboard_voting_real
-     self.users.sort_by {|user| - user.score_voting_my_real}
+      self.users.order("users.voting_real DESC").where("users.has_voted" => true)
   end
 
   def users_leaderboard_voting_fake
-    self.users.sort_by {|user| - user.score_voting_my_fake}
+    self.users.order("users.voting_fake DESC").where("users.has_voted" => true)
   end
   
   # ----------------------------------------------------------------------------------------------
   
   
   def score
-    n = self.users.map{|user| user.score}.sum
-    return n
+    self.users.where("users.has_voted" => true).sum("users.total_score")
   end
-  
-  def self.leaderboard_summary(id)
+
+   def self.leaderboard_summary(id)
    n = School.where(:visible => true).count
    if n <= 5
       return School.leaderboard

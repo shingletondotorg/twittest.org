@@ -57,26 +57,51 @@ class Vote < ActiveRecord::Base
   end
   
   
+  def update_score()
+    micropost = Micropost.find_by_id(self.micropost_id)
+    
+    tweet_user = User.find_by_id(micropost.user_id)
+    voting_user = User.find_by_id(self.user_id)
   
-  def self.user_scatter_vote(id)
-   # scatter_points = []
-   # a = [self.user_vote_correct_count(id), self.user_vote_incorrect_count(id)]  
-   # scatter_points << a
-   # return scatter_points
+    if micropost.user.turing_user_id == micropost.turing_user_id
+      #author is posting as themselves reward voter and author if vote matches micropost.turing_user_id
+      if self.vote == micropost.turing_user_id
+        voting_user.voting_real = voting_user.voting_real + 10 
+        tweet_user.votes_real = tweet_user.votes_real + 10
+      else
+        voting_user.voting_real = voting_user.voting_real - 10
+        tweet_user.votes_real = tweet_user.votes_real - 10
+      end
+      
+    elsif
+      #user is posting as a fake
+      if self.vote == micropost.user.turing_user_id
+        #voter spotted the fake
+        voting_user.voting_fake = voting_user.voting_fake + 10
+        tweet_user.votes_fake = tweet_user.votes_fake - 10
+      elsif self.vote == micropost.turing_user_id
+        #voter has been fooled
+        voting_user.voting_fake = voting_user.voting_fake - 10
+        tweet_user.votes_fake = tweet_user.votes_fake + 10
+      else
+        #voter partially fooled
+        voting_user.voting_fake = voting_user.voting_fake + 6
+        tweet_user.votes_fake = tweet_user.voting_fake + 2
+      end 
+    end
+    
+    voting_user.total_score = voting_user.votes_fake + voting_user.votes_real + voting_user.voting_fake + voting_user.voting_real
+    tweet_user.total_score = tweet_user.votes_fake + tweet_user.votes_real + tweet_user.voting_fake + tweet_user.voting_real
+    
+    voting_user.has_voted = true
+    voting_user.save!
+    tweet_user.save!
+   
+    
+  
+    
+    
+    
   end
-  
-  def self.all_users_scatter_vote(id)    
-   # users = User.where("users.id != ?", id)
-  
-   # scatter_points = []
-   # users.each do | u |
-   #   a = [self.user_vote_correct_count(u.id), self.user_vote_incorrect_count(u.id)]
-   #   scatter_points << a
-   # end
-   # return scatter_points
-  end
-  
-  
-  
 
 end

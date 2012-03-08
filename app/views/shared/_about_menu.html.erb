@@ -1,8 +1,8 @@
 <ul id="settings_nav" class="tabs" role="navigation">
-	<li <% if (request.request_uri == about_path) %>class="active"<% end %>><%= link_to "Turing Test", about_path %></li>
-	<li <% if (request.request_uri == twitter_path) %>class="active"<% end %>><%= link_to "Twitter", twitter_path %></li>
-	<li <% if (request.request_uri == chatbots_path) %>class="active"<% end %>><%= link_to "Chatbots", chatbots_path %></li>
-	<li <% if (request.request_uri == communications_path) %>class="active"<% end %>><%= link_to "Deception and Online Communication", communications_path %></li>
-	<li <% if (request.request_uri == winning_path) %>class="active"<% end %>><%= link_to "Strategies for Winning", winning_path %></li>
+	<li <% if (request.fullpath == about_path) %>class="active"<% end %>><%= link_to "Turing Test", about_path %></li>
+	<li <% if (request.fullpath == twitter_path) %>class="active"<% end %>><%= link_to "Twitter", twitter_path %></li>
+	<li <% if (request.fullpath == chatbots_path) %>class="active"<% end %>><%= link_to "Chatbots", chatbots_path %></li>
+	<li <% if (request.fullpath == communications_path) %>class="active"<% end %>><%= link_to "Deception and Online Communication", communications_path %></li>
+	<li <% if (request.fullpath == winning_path) %>class="active"<% end %>><%= link_to "Strategies for Winning", winning_path %></li>
 </ul>
 

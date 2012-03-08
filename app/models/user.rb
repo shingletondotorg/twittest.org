@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password # creates virtual "password" attribute
-  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id, :voting_fake
+  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id, :voting_fake ,:voting_real, :votes_fake, :votes_real, :has_voted
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school
@@ -27,12 +27,13 @@ class User < ActiveRecord::Base
   # Automatically creates virtual attribute "password_confirmation"
   validates :password, :presence     => true,
                        :confirmation => true,
-                       :length       => { :within => 6..40 }
+                       :length       => { :within => 6..40 },
+                       :on => :create
                        
   
 
   
-  before_save :encrypt_password
+ # before_save :encrypt_password
 
   def feed
     Micropost.where("user_id = ?", id)
@@ -67,23 +68,23 @@ class User < ActiveRecord::Base
   
 
   def self.leaderboard
-     User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score}
+     User.joins(:school).where('schools.visible' => true).where("users.has_voted" => true).order("users.total_score DESC")
   end
   
   def self.leaderboard_my_vote_real
-      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_my_vote_real}
+       User.joins(:school).where('schools.visible' => true).where("users.has_voted" => true).order("users.votes_real DESC")
   end 
   
   def self.leaderboard_my_vote_fake
-      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_my_vote_fake}
+      User.joins(:school).where('schools.visible' => true).where("users.has_voted" => true).order("users.votes_fake DESC")
   end
   
   def self.leaderboard_voting_my_real
-      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_voting_my_real}
+       User.joins(:school).where('schools.visible' => true).where("users.has_voted" => true).order("users.voting_real DESC")
   end 
   
   def self.leaderboard_voting_my_fake
-      User.joins(:school).where('schools.visible' => true).sort_by {|user| - user.score_voting_my_fake}
+      User.joins(:school).where('schools.visible' => true).where("users.has_voted" => true).order("users.voting_fake DESC")
   end
   
   # ----------------------------------------------------------------------------------------------
@@ -349,7 +350,7 @@ class User < ActiveRecord::Base
 
 
 
-    private
+  
 
     def encrypt_password
       # new_record? returns true if object has not yet been saved to DB
@@ -358,7 +359,7 @@ class User < ActiveRecord::Base
       self.salt = make_salt if new_record?
       self.encrypted_password = encrypt(password)
     end
-
+    
     def encrypt(string)
       secure_hash("#{salt}--#{string}")
     end
@@ -370,6 +371,8 @@ class User < ActiveRecord::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
+    
+      private
 end
 
 # == Schema Information

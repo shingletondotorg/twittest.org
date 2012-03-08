@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120214133427) do
+ActiveRecord::Schema.define(:version => 20120307164342) do
 
   create_table "conversation_threads", :force => true do |t|
     t.integer  "conversation_id"
@@ -60,6 +60,12 @@ ActiveRecord::Schema.define(:version => 20120214133427) do
     t.integer  "school_id"
     t.string   "last_name"
     t.string   "display_name"
+    t.boolean  "has_voted",          :default => false
+    t.integer  "total_score",        :default => 0
+    t.integer  "votes_real",         :default => 0
+    t.integer  "votes_fake",         :default => 0
+    t.integer  "voting_real",        :default => 0
+    t.integer  "voting_fake",        :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

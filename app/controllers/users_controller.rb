@@ -20,12 +20,20 @@ class UsersController < ApplicationController
   end
 
   def create    
+    
     @user = User.new(params[:user])
+    @user.encrypt_password
+    
+   # @user = User.new(params[:user])
+    #if @user.save
     if @user.save
+     # @user.encrypt_password
       flash[:success] = "Welcome to Twittest!"
+     # @user = u
       sign_in @user
       redirect_to @user
     else
+     # @user = u
       @title = "Sign up"
       # Reset password to it's cleared in the form input
       @user.password = ""
@@ -55,16 +63,15 @@ class UsersController < ApplicationController
   end
   
   def update_profile
-     
-     
-     
      @user = User.find(current_user.id)
-      if @user.update_attributes(params[:user])
-        flash.now[:success] = "Profile updated."
+     @user.update_attributes(params[:user])
+     @user.encrypt_password
+      if @user.save
+         flash[:success] = "Profile updated."
       else
-        flash.now[:error] = "There has been a problem saving your profile."
+        flash[:error] = "There has been a problem saving your profile."
       end
-      render 'my_profile'
+     redirect_to my_profile_path
   end
 
   def destroy
