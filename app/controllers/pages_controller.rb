@@ -8,8 +8,9 @@ class PagesController < ApplicationController
       @feed_items = Micropost.all_tweets(:id => current_user.id).paginate(:page => params[:page])
       @turing_users = TuringUser.all
       @conversation = Conversation.new
-      @myschool_leaderboard = current_user.leaderboard_school
-      if current_user.school.visible 
+      
+      if current_user.has_voted
+        @myschool_leaderboard = current_user.leaderboard_school
         @twittest_leaderboard = current_user.leaderboard_twittest
         @school_leaderboard = School.leaderboard_summary(current_user.school.id)
       end 
@@ -24,11 +25,11 @@ class PagesController < ApplicationController
        @feed_items = Micropost.not_voted(:id => current_user.id).paginate(:page => params[:page])
        @turing_users = TuringUser.all
        @conversation_thread = ConversationThread.new
-       @myschool_leaderboard = current_user.leaderboard_school
-        if current_user.school.visible 
-          @twittest_leaderboard = current_user.leaderboard_twittest
-          @school_leaderboard = School.leaderboard_summary(current_user.school.id)  
-        end
+        if current_user.has_voted
+           @myschool_leaderboard = current_user.leaderboard_school
+           @twittest_leaderboard = current_user.leaderboard_twittest
+           @school_leaderboard = School.leaderboard_summary(current_user.school.id)
+         end
      end
    end
 
@@ -38,11 +39,12 @@ class PagesController < ApplicationController
        @micropost = Micropost.new
        @feed_items = current_user.microposts.paginate(:page => params[:page])
        @turing_users = TuringUser.all
-       @myschool_leaderboard = current_user.leaderboard_school
-       if current_user.school.visible 
-        @twittest_leaderboard = current_user.leaderboard_twittest
-        @school_leaderboard = School.leaderboard_summary(current_user.school.id)  
-       end
+       
+        if current_user.has_voted
+           @myschool_leaderboard = current_user.leaderboard_school
+           @twittest_leaderboard = current_user.leaderboard_twittest
+           @school_leaderboard = School.leaderboard_summary(current_user.school.id)
+         end
     end
   end
   
@@ -53,11 +55,11 @@ class PagesController < ApplicationController
         @feed_items = current_user.my_conversations.paginate(:page => params[:page])
         @turing_users = TuringUser.all
         @conversation_thread = ConversationThread.new
-        @myschool_leaderboard = current_user.leaderboard_school
-        if current_user.school.visible 
-          @twittest_leaderboard = current_user.leaderboard_twittest
-          @school_leaderboard = School.leaderboard_summary(current_user.school.id)  
-        end
+         if current_user.has_voted
+            @myschool_leaderboard = current_user.leaderboard_school
+            @twittest_leaderboard = current_user.leaderboard_twittest
+            @school_leaderboard = School.leaderboard_summary(current_user.school.id)
+          end
     end
   end
   

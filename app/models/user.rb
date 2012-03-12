@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   # Automatically creates virtual attribute "password_confirmation"
   validates :password, :presence     => true,
                        :confirmation => true,
-                       :length       => { :within => 6..40 },
+                       :length       => { :within => 4..40 },
                        :on => :create
                        
   

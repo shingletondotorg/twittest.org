@@ -11,6 +11,15 @@ SampleApp::Application.routes.draw do
     resources :microposts, :only => [:index]
   end
   
+  
+  resources :import_tables
+    post 'import_tables/:id' => 'import_tables#merge'
+
+    get "csv/import"
+
+    post "csv/import" => 'csv#upload'
+  
+  
   resources :schools
   resources :votes,   :only => [:new, :create, :destroy]
   resources :sessions,   :only => [:new, :create, :destroy]

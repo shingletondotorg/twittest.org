@@ -45,31 +45,36 @@ class School < ActiveRecord::Base
     self.users.where("users.has_voted" => true).sum("users.total_score")
   end
 
+
+
+
+
    def self.leaderboard_summary(id)
    n = School.where(:visible => true).count
-   if n <= 5
-      return School.leaderboard
-   else
-       p = School.leaderboard.index(id)
-       case p
-       when  0
-         return School.leaderboard.slice(0..4)
-       when 1
-         return School.leaderboard.slice(0..4)
-       else
-         if p == n-1
-             s = p-4
-             e = n    
-         elsif p == n-2
-             s = p-3
-             e = n
+     if n <= 5
+       return School.leaderboard
+     else
+        p = School.leaderboard.index(School.find_by_id(id))
+
+         case p
+         when  0
+           return School.leaderboard.slice(0..4)
+         when 1
+           return School.leaderboard.slice(0..4)
          else
-           s = p - 2
-           e = p + 2
+           if p == n-1
+               s = p-4
+               e = n    
+           elsif p == n-2
+               s = p-3
+               e = n
+           else
+             s = p - 2
+             e = p + 2
+           end
+           return School.leaderboard.slice(s..e)
          end
-         return School.leaderboard.slice(s..e)
-       end
-   end  
+     end
   
   end
   
