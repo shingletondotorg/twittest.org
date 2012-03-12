@@ -9,7 +9,7 @@ class PagesController < ApplicationController
       @turing_users = TuringUser.all
       @conversation = Conversation.new
       
-      if current_user.has_voted
+      if current_user.has_voted and current_user.school.visible
         @myschool_leaderboard = current_user.leaderboard_school
         @twittest_leaderboard = current_user.leaderboard_twittest
         @school_leaderboard = School.leaderboard_summary(current_user.school.id)
@@ -25,7 +25,7 @@ class PagesController < ApplicationController
        @feed_items = Micropost.not_voted(:id => current_user.id).paginate(:page => params[:page])
        @turing_users = TuringUser.all
        @conversation_thread = ConversationThread.new
-        if current_user.has_voted
+         if current_user.has_voted and current_user.school.visible
            @myschool_leaderboard = current_user.leaderboard_school
            @twittest_leaderboard = current_user.leaderboard_twittest
            @school_leaderboard = School.leaderboard_summary(current_user.school.id)
@@ -40,7 +40,7 @@ class PagesController < ApplicationController
        @feed_items = current_user.microposts.paginate(:page => params[:page])
        @turing_users = TuringUser.all
        
-        if current_user.has_voted
+        if current_user.has_voted and current_user.school.visible
            @myschool_leaderboard = current_user.leaderboard_school
            @twittest_leaderboard = current_user.leaderboard_twittest
            @school_leaderboard = School.leaderboard_summary(current_user.school.id)
@@ -55,7 +55,7 @@ class PagesController < ApplicationController
         @feed_items = current_user.my_conversations.paginate(:page => params[:page])
         @turing_users = TuringUser.all
         @conversation_thread = ConversationThread.new
-         if current_user.has_voted
+         if current_user.has_voted and current_user.school.visible
             @myschool_leaderboard = current_user.leaderboard_school
             @twittest_leaderboard = current_user.leaderboard_twittest
             @school_leaderboard = School.leaderboard_summary(current_user.school.id)
