@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
   end
   
   def leaderboard_twittest
-    n = User.all.count
+    n = User.all.count.where(:has_voted => true)
     if n <= 5
       return User.leaderboard
     else
@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
   end
   
   def leaderboard_twittest_my_vote_real
-    n = User.all.count
+    n = User.all.count.where(:has_voted => true)
     if n <= 5
       return User.leaderboard_my_vote_real
     else
@@ -132,7 +132,7 @@ class User < ActiveRecord::Base
   end
    
    def leaderboard_twittest_my_vote_fake
-       n = User.all.count
+       n = User.all.count.where(:has_voted => true)
        if n <= 5
          return User.leaderboard_my_vote_fake
        else
@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
      end
 
    def leaderboard_twittest_voting_my_real
-      n = User.all.count
+      n = User.all.count.where(:has_voted => true)
       if n <= 5
         return User.leaderboard_voting_my_real
       else
@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
     end
   
     def leaderboard_twittest_voting_my_fake
-     n = User.all.count
+     n = User.all.count.where(:has_voted => true)
      if n <= 5
        return User.leaderboard_voting_my_fake
      else
