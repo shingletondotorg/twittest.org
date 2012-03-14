@@ -10,19 +10,21 @@ class MicropostsController < ApplicationController
     #raise params[:user].inspect
     
     if params[:micropost][:content].empty?
-      flash[:error] = "There has been a problem saving your tweet.  You must enter a message."
-       redirect_to request.referer
+      flash[:error] = "There has been a problem saving your tweet. You must enter a message."
+      redirect_to request.referer
+    elsif Micropost.same_content?(current_user.id, params[:micropost][:content], params[:micropost][:turing_user_id])
+      flash[:error] = "You have already created a tweet for that identity with the same content today."
+      redirect_to request.referer
     else
-
-    @micropost = current_user.microposts.build(params[:micropost])
-    if @micropost.save
-      flash[:success] = "Tweet created!"
-     redirect_to request.referer
-    else
-      @feed_items = []
-      render 'pages/home'
+      @micropost = current_user.microposts.build(params[:micropost])
+      if @micropost.save
+        flash[:success] = "Tweet created!"
+        redirect_to request.referer
+      else
+        @feed_items = []
+        render 'pages/home'
+      end
     end
-  end
   end
 
   def destroy

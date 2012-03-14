@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :turing_user_id
+  attr_accessible :content, :turing_user_id, :user_id
   profanity_filter :content
  
   belongs_to :user
@@ -40,6 +40,15 @@ class Micropost < ActiveRecord::Base
   
   def has_votes?
     self.votes.count != 0
+  end
+  
+  def self.same_content?(user_id, content, turing_user_id)
+    t = Time.now
+    if Micropost.where("user_id = ? AND content = ? AND turing_user_id= ? AND DATE(created_at) = ?", user_id, content,turing_user_id, t.strftime("%Y-%m-%d")).count == 0
+      return false
+    else
+      return true
+    end
   end
   
   def ive_voted?(id)
