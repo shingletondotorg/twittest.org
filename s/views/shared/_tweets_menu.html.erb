@@ -1,0 +1,6 @@
+<ul class="stream-tabs">
+  <li class="stream-tab<% if request.fullpath == root_path %>-active<% end %>"><%= link_to "Timeline", root_path, :class => 'tab-text'%></li>
+  <li class="stream-tab<% if request.fullpath == voteontweets_path %>-active<% end %>"><%= link_to "Vote on Tweets", voteontweets_path, :class => 'tab-text'%></li>
+  <li class="stream-tab<% if request.fullpath == mytweets_path %>-active<% end %>"><%= link_to "My Tweets", mytweets_path, :class => 'tab-text'%></li>
+  <li class="stream-tab<% if request.fullpath == myconversations_path %>-active<% end %>"><%= link_to "Conversations on My Tweets", myconversations_path, :class => 'tab-text'%></li>
+</ul>

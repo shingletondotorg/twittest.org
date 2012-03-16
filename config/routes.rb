@@ -59,7 +59,9 @@ SampleApp::Application.routes.draw do
   # match 'users/:id/update_profile', :to =>'users#update_profile'
   #match 'users(/update_profile(/:id))',  :to =>'users#update_profile'
 
-  root :to => 'pages#home'
+ # root :to => 'pages#home'
+  
+   root :to => 'pages#maintenance'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

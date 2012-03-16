@@ -1,0 +1,33 @@
+<%= render 'shared/error_messages', :object => f.object %>
+<div class="field">
+  <%= f.label :first_name %><br />
+  <%= f.text_field :first_name %>
+</div>
+<div class="field">
+  <%= f.label :last_name %><br />
+  <%= f.text_field :last_name %>
+</div>
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.text_field :email %>
+</div>
+<div class="field">
+  <%= f.label :display_name %><br />
+  <%= f.text_field :display_name %>
+</div>
+<div class="field">
+ <%= f.label :school_id, "School" %> <br />
+ <%= f.collection_select :school_id, School.all, :id, :name, :prompt => true  %>
+</div>
+<div class="field">
+ <%= f.label :turing_user_id, "User Type" %> <br />
+ <%= f.collection_select :turing_user_id, TuringUser.all, :id, :name, :prompt => true  %>
+</div>
+<div class="field">
+  <%= f.label :password %><br />
+  <%= f.password_field :password %>
+</div>
+<div class="field">
+  <%= f.label :password_confirmation, "Confirmation" %><br />
+  <%= f.password_field :password_confirmation %>
+</div>

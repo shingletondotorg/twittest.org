@@ -1,0 +1,86 @@
+<div class="stream-item">
+
+  <div class="micropost">
+    
+<div>
+	<div style="float:left;margin-right:13px"><%=image_tag "tweet_icon.png", :style=>"height:40px; width:54px; position:relative; top:-4px" %></div>
+	<div>
+		<span class="tweeted-on">Tweeted <%= time_ago_in_words(conversation_item.micropost.created_at) %> ago</span>
+		<span class="tweeted-as"><%= conversation_item.micropost.turing_user.name %></span>
+	</div>
+	<div class="tweeted-content"><%= wrap(conversation_item.micropost.content) %></div>
+</div>   	
+<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
+			<div style="padding-top:0px;color: #999999; font-size: 11px;line-height: 15px;">
+			<% display_reply = true %>
+				<a onclick="$('#reply-for-<%=conversation_item.id%>').toggle();">
+				  <% if conversation_item.last_to_reply  == current_user.id %>
+				       View Conversation
+				  <%   display_reply = false
+					 else %>
+					    Reply to Conversation
+				  <% end %>
+			   </a>
+		    </div>
+				<div id="reply-for-<%=conversation_item.id%>" style="display:none; padding:10px 0px 10px 0px">
+					 <% if conversation_item.id %>
+					<div>
+						<% conversation_item.conversation_threads.each do |r| %>
+						 
+							<% if r.user_id == current_user.id %>
+							 	 <div style="min-height:35px; text-align:right;">
+									<span style="width:93%; display:block;">
+									<span style=" padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe;"> 
+										<%= r.content %>
+									</span>
+									</span>
+										<%=image_tag "conversation_right.png", :style=>"height:22px; width:30px; position:relative; top:-12px; float:right; vertical-align:text-top;" %>
+									
+							</div>
+							<% else %>
+							 <div style="min-height:35px">
+									<%=image_tag "conversation_left.png", :style=>"height:22px; width:30px;" %>
+									<span style="padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe; color:#666666">
+										<%= r.content %>
+									</span>
+							</div>	 
+							<% end %>
+						
+						<% end %>
+
+					</div>
+					<% end %>
+					<% if display_reply %>
+					<div id="tweet-box">
+					<div class="text-area">
+					   <%= form_for conversation_thread, :url => {:controller => "conversation_threads" , :action => "create"} do |f| %> 
+						<%= f.hidden_field :micropost_id,  :value => conversation_item.micropost_id %>
+						<%= f.hidden_field :user_id,  :value => current_user.id %>
+						<%= f.hidden_field :conversation_id,  :value => conversation_item.id %>
+
+					 <%= f.text_area :content, :class => 'tweet-editor' , :id => "conversation_content_#{conversation_item.id}"%>
+					 	<script type="text/javascript">
+						   $('#conversation_content_<%= conversation_item.id %>').limit('140','#charsLeft_<%= conversation_item.id %>');
+						</script>
+
+
+
+
+						<div class="tweet-button-container">
+						<span id="charsLeft_<%= conversation_item.id %>" class="charsLeft"></span>	<%= f.submit "Reply", :class => 'button' %>
+						</div>
+						<script type="text/javascript">
+						    var val = $('#conversation_content_<%= conversation_item.id %>').val();
+							var length = val.length;
+							length = 140 - length;
+							$('#charsLeft_<%= conversation_item.id %>').text(length);
+						</script>
+						</div>
+						</div>
+						<% end %>
+						<% end %>
+
+				</div>
+	</div>
+  </div>
+</div>

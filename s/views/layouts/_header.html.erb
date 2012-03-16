@@ -1,0 +1,50 @@
+<header>
+    
+    <div id="top-bar"> 
+	  <div class="top-bar-inside">
+       <%= link_to logo, root_path , :style => "position:inherit; top:3px;"%> 
+		<span class="welcome_name" style="position:inherit;top:-6px;">
+		<% if signed_in? %>	Welcome <%= current_user.display_name %>! 
+		<% else %>
+			Are you the twit in twitter?
+		<% end %>
+		</span>
+		<nav>
+			<ul>
+			<% if signed_in? %>
+				<li><%= link_to "Home", root_path %></li>	
+				<% if current_user.has_voted %>
+					<li><%= link_to "My Score", votesreal_path %></li>
+				<% end %>
+				<li><%= link_to "My Profile", my_profile_path %></li>
+				<li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+			<% else %>
+
+				<%= form_for(:session, :url => sessions_path) do |f| %>
+				 
+				    <%= f.label :email, :class => 'signin_label' %>
+				    <%= f.text_field :email, :class => 'signin_field', :style => "border-radius: 3px; width:150px; border-color: #222222; background-color: #333333; color:#f9f9f9" %>
+			
+				 
+				    <%= f.label :password , :class => 'signin_label' %>
+			
+				   <%= f.password_field :password, :class => 'signin_field', :style => "border-radius: 3px; width:100px; border-color: #222222; background-color: #333333; color:#f9f9f9" %>
+				    
+				<%= f.submit "Sign in", :class => 'signin_button'%>
+			
+				<% end %>
+
+			<% end %>
+			</ul>
+		</nav>
+      
+		
+		
+	</div>
+	
+ </div>
+	
+
+
+</header>
+

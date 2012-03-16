@@ -1,0 +1,9 @@
+<div class="whole-page-header">
+	<h1><%= current_user.display_name %>'s Score</h1>	
+	<ul id="settings_nav" class="tabs" role="navigation">
+		<li <% if request.fullpath == votesreal_path %>class="active"<% end %>><%= link_to "My Votes on Real Tweets", votesreal_path %></li>
+		<li <% if request.fullpath == votesfake_path %>class="active"<% end %>><%= link_to "My Votes on Fake Tweets", votesfake_path %></li>
+		<li <% if request.fullpath == votingreal_path %>class="active"<% end %>><%= link_to "Voting on My Real Tweets", votingreal_path %></li>
+		<li <% if request.fullpath == votingfake_path %>class="active"<% end %>><%= link_to "Voting on My Fake Tweets", votingfake_path %></li>
+	</ul>
+</div>

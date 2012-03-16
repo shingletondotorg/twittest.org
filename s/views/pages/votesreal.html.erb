@@ -1,0 +1,88 @@
+<div class="whole-page-wrapper">
+	<%= render 'shared/score_menu' %>
+	<div class="whole-page left-section" style="background-color:#fff">
+		
+		<script type="text/javascript">
+
+					var pie_vote_real;
+	
+					$(document).ready(function() {
+						Highcharts.setOptions({
+						    colors: ['#007236', '#9e0b0f','#f7941d']
+						});
+
+
+						pie_vote_real = new Highcharts.Chart({
+							chart: {
+									 renderTo: 'pie-vote-real',
+									 backgroundColor: '#fff',
+							         plotBackgroundColor: null,
+							         plotBorderWidth: null,
+							         plotShadow: false
+							      },
+							      title: { text: '' },
+							      tooltip: {
+							         formatter: function() { var s; if (this.point.name) { s = this.y; } return s; }
+							      },
+							      plotOptions: {
+							         pie: {
+							            allowPointSelect: true,
+							            cursor: 'pointer',
+							            dataLabels: {
+							               enabled: false
+							            },
+							            showInLegend: true
+							         }
+							      },
+									legend:{ backgroundColor: '#fff' },
+							       series: [{
+							         type: 'pie',
+							         name: 'Votes on real tweets',
+							         data: [
+							            ['Correct', <%= Vote.vote_real_correct(current_user) %>],
+							            ['Incorrect', <%= Vote.vote_real_incorrect(current_user) %>]
+							         ]
+							      }]
+						});
+
+					
+					});
+
+				</script>
+		<div id="pie-vote-real" style="width:225px; height:225px;"></div>
+	</div>
+	<div class="whole-page middle-section">
+		<% if current_user.school.visible %>
+		<h3>Position in Twittest</h3>
+		<% @twittest_leaderboard.each do |user| %>
+			<div>
+				<span style="float:right"><%= user.position_twittest_my_vote_real %> </span>
+				<%= user.display_name %>
+			</div>
+		<% end %>
+		<hr />
+		<% end %>
+		<h3>Position in <%= current_user.school.name%></h3>
+		<% @school_leaderboard.each do |user| %>
+			<div>
+				<span style="float:right"><%= user.position_in_school_my_votes_real %> </span>
+				<%= user.display_name %>
+			</div>
+		<% end %>
+	</div>
+	<div class="whole-page right-section" style="min-height: 300px;">
+		<h3>This Section</h3>
+		<p>
+			This chart show your progress on correctly identifying when someone is tweeting as themselves.
+		</p>
+		<hr />
+		<h3>Calculating Your Score</h3>
+		<p>
+			You positively score points every time you correctly identify when another Twittest user
+			is tweeting as themselves.  You are deducted points when you fail to identify a user who is tweeting under
+			their own identity.	
+		</p>
+	
+	
+	</div>
+</div>

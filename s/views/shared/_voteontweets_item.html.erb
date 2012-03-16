@@ -1,0 +1,107 @@
+<div class="stream-item">
+  <div class="micropost">
+    <div>
+		<div style="float:left;margin-right:13px"><%=image_tag "tweet_icon.png", :style=>"height:40px; width:54px; position:relative; top:-4px" %></div>
+		<div>
+		<span class="tweeted-on">Tweeted <%= time_ago_in_words(voteontweets_item.created_at) %> ago</span>
+		<span class="tweeted-as"><%= voteontweets_item.turing_user.name %></span>
+	</div>
+	</div>
+	<div class="tweeted-content"><%= wrap(voteontweets_item.content) %></div>
+   	<div style="padding-top:10px;color: #999999; font-size: 11px;line-height: 15px;">
+		
+		
+		<div style="padding-top:0px;color: #999999; font-size: 11px;line-height: 15px;">
+			<a onclick="$('#votes-for-<%=voteontweets_item.id%>').toggle(); $('#reply-for-<%=voteontweets_item.id%>').hide();">Vote on Tweet</a> 
+			or 
+	
+			<% 
+			  display_reply = true
+			  conversation_id = voteontweets_item.in_conversation?(current_user.id) 
+			  if !conversation_id	
+			%>
+			<a onclick="$('#reply-for-<%=voteontweets_item.id%>').toggle(); $('#votes-for-<%=voteontweets_item.id%>').hide();">Start a Conversation</a>
+			<% else %>
+				<a onclick="$('#reply-for-<%=voteontweets_item.id%>').toggle(); $('#votes-for-<%=voteontweets_item.id%>').hide();">
+					<% if voteontweets_item.last_to_reply(current_user.id, conversation_id)  == current_user.id %>
+							View Conversation
+			    		<% 
+			   			display_reply = false
+						else 
+						%>
+							Reply to Conversation
+					<% end %>
+				</a>
+			<% end %>
+			
+			 
+		</div>
+		<div id="votes-for-<%=voteontweets_item.id%>" style="display:none; padding:10px 0px 10px 0px">
+			<span style="float:left">Who is the author of this tweet?</span>
+			<% @turing_users.each do |tu| %>
+				<span onClick="$('#votes-for-<%=voteontweets_item.id%>').toggle();">
+					<%= button_to tu.name, { :controller => "votes", :action => "create", :vote => { :user_id => current_user.id, :micropost_id => voteontweets_item.id, :vote => tu.id }} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+				</span>
+			<% end %>
+		</div>
+		<div id="reply-for-<%=voteontweets_item.id%>" style="display:none; padding:10px 0px 10px 0px">
+			 <% if conversation_id %>
+			<div>
+				<% voteontweets_item.tweet_replies(current_user.id, conversation_id).each do |r| %>
+					
+					<% if r.user_id == current_user.id %>
+					 	 <div style="min-height:35px; text-align:right;">
+							<span style="width:93%; display:block;">
+							<span style=" padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe;"> 
+								<%= r.content %>
+							</span>
+							</span>
+								<%=image_tag "conversation_right.png", :style=>"height:22px; width:30px; position:relative; top:-12px; float:right; vertical-align:text-top;" %>
+							
+					</div>
+					<% else %>
+					 <div style="min-height:35px">
+							<%=image_tag "conversation_left.png", :style=>"height:22px; width:30px;" %>
+							<span style="padding: 3px 7px 3px 7px; border: solid 1px; border-color: #f1f1f1; border-radius:3px; background-color:#fefefe; color:#666666">
+								<%= r.content %>
+							</span>
+					</div>	 
+					<% end %>
+				
+					<% end %>	
+			</div>
+			<% end %>
+			<% if display_reply %>
+			<div id="tweet-box">
+			<div class="text-area">
+			   <%= form_for conversation_thread, :url => {:controller => "conversation_threads" , :action => "create"} do |f| %> 
+				<%= f.hidden_field :micropost_id,  :value => voteontweets_item.id %>
+				<%= f.hidden_field :user_id,  :value => current_user.id %>
+				<%= f.hidden_field :conversation_id,  :value => conversation_id %>
+			
+			 <%= f.text_area :content, :class => 'tweet-editor' , :id => "conversation_content_#{voteontweets_item.id}"%>
+			 	<script type="text/javascript">
+				   $('#conversation_content_<%= voteontweets_item.id %>').limit('140','#charsLeft_<%= voteontweets_item.id %>');
+				</script>
+				
+				  
+
+				
+				<div class="tweet-button-container">
+				<span id="charsLeft_<%= voteontweets_item.id %>" class="charsLeft"></span>	<%= f.submit "Reply", :class => 'button' %>
+				</div>
+				<script type="text/javascript">
+				    var val = $('#conversation_content_<%= voteontweets_item.id %>').val();
+					var length = val.length;
+					length = 140 - length;
+					$('#charsLeft_<%= voteontweets_item.id %>').text(length);
+				</script>
+				</div>
+				</div>
+				<% end %>
+				<% end %>
+				
+		</div>
+	</div>
+  </div>
+</div>

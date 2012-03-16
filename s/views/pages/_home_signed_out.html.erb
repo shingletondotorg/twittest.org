@@ -1,0 +1,233 @@
+<script type="text/javascript">
+ function process_vote(id, author, vote){
+	
+	
+
+	var tweetauthor  = tweet_author(vote, author);
+
+	if (tweetauthor == vote) {
+		$('#votes-for-'+id).html("<span style='color:green'>You correctly identified the author as a " + return_name(tweetauthor) + "</span>");
+  	} else {
+     	$('#votes-for-'+id).html("<span style='color:red'>The author of this tweet was in fact a  " + return_name(tweetauthor)+ "</span>");
+   	}
+ }
+
+ function tweet_author(vote, author){
+	var arr = [1, 2, 3, 4, author, author, author, author, vote];
+	var randomnumber=Math.floor(Math.random()*arr.length);
+	arr = $.shuffle(arr);
+	
+	return arr[randomnumber];
+ }	
+
+ function return_name(tweetauthor){
+
+	if(tweetauthor == 1){
+		return "Student";
+	}
+	if(tweetauthor == 2){
+		return "Teacher";
+	}
+	if(tweetauthor == 3){
+		return "Celebrity";
+	}
+	if(tweetauthor == 4){
+		return "Twitbot";
+	}
+	
+}
+
+(function($){
+
+	$.fn.shuffle = function() {
+		return this.each(function(){
+			var items = $(this).children().clone(true);
+			return (items.length) ? $(this).html($.shuffle(items)) : this;
+		});
+	}
+	
+	$.shuffle = function(arr) {
+		for(var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
+		return arr;
+	}
+	
+})(jQuery);
+
+</script>
+
+
+<div class="main-content" style="min-height: 570px">
+  <div class="page-header">
+    <div id="tweet-box">
+      <h2>
+  	    Can you spot the true identity?
+      </h2>
+    </div>
+    <ul class="stream-tabs">
+      <li class="stream-tab-active"><a href="/" class="tab-text">Timeline</a></li>			
+    </ul>
+  </div>
+  <div class="stream-manager">
+    <div class="stream-container">
+						
+						
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 3 minutes ago</span>
+								<span class="tweeted-as">Teacher</span>
+							</div>
+							<div class="tweeted-content">great class today - i think they've cracked and seem happier with the project for this term</div>
+							<div id="votes-for-1" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(1, 2, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(1, 2, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(1, 2, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(1, 2, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div>  
+						  </div>
+						</div>
+						
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 20 minutes ago</span>
+								<span class="tweeted-as">Student</span>
+
+							</div>
+							<div class="tweeted-content">anyone for macadeeeee's later?</div>
+						  	<div id="votes-for-2" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(2, 1, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(2, 1, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(2, 1, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(2, 1, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div>
+							</div>
+						</div>
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 23 minutes ago</span>
+								<span class="tweeted-as">Teacher</span>
+
+							</div>
+							<div class="tweeted-content">Where do you take computing students on a school trip?! any ideas?</div>
+						  	<div id="votes-for-3" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(3, 2, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(3, 2, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(3, 2, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(3, 2, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div>
+							</div>
+						</div>
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 1 hour ago</span>
+								<span class="tweeted-as">Student</span>
+
+							</div>
+							<div class="tweeted-content">looking forward to Tracey Beaker after school - i know its kids stuff but its still cool</div>
+							<div id="votes-for-4" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(4, 1, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(4, 1, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(4, 1, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(4, 1, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div> 
+						 </div>
+						</div>
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 1 hour ago</span>
+								<span class="tweeted-as">Celebrity</span>
+
+							</div>
+							<div class="tweeted-content">The Golden Globes are just not glam enough - stop trying to be smart Hollywood and show us your money!</div>
+						  	<div id="votes-for-5" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(5, 3, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(5, 3, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(5, 3, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(5, 3, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div>
+						</div>
+						</div>
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 2 hours ago</span>
+								<span class="tweeted-as">Teacher</span>
+
+							</div>
+							<div class="tweeted-content">excited about this new project, let's see who can spot the fakers!</div>
+						 	<div id="votes-for-6" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(6, 2, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(6, 2, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(6, 2, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(6, 2, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div>
+						 </div>
+						</div>
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 4 hours ago</span>
+								<span class="tweeted-as">Twitbot</span>
+
+							</div>
+							<div class="tweeted-content">bike chain fell off again, gotta get it sorted, oil all over hands again</div>
+						  	<div id="votes-for-7" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(7, 4, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(7, 4, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(7, 4, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(7, 4, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div>
+							</div>
+						</div>
+						<div class="stream-item">
+						  <div class="micropost">
+						    <div>
+								<span class="tweeted-on">Tweeted 4 hours ago</span>
+								<span class="tweeted-as">Student</span>
+
+							</div>
+							<div class="tweeted-content">OMG that rain was so heavy - totally soaked through</div>
+						  	<div id="votes-for-8" style=" padding:10px 0px 0px 0px">
+							  <span style="float:left">Who is the author of this tweet?</span>
+							    <a onclick="process_vote(8, 1, 1)" style="padding-left: 10px;" class="button_to_link">Student</a>
+							    <a onclick="process_vote(8, 1, 2)" style="padding-left: 10px;" class="button_to_link">Teacher</a>
+								<a onclick="process_vote(8, 1, 3)" style="padding-left: 10px;" class="button_to_link">Celebrity</a>
+							    <a onclick="process_vote(8, 1, 4)" style="padding-left: 10px;" class="button_to_link">Twitbot</a>
+							</div>
+						</div>
+						</div>
+	</div>
+  </div>
+</div>
+<div id="left-pane" class="dashboard">
+	
+			
+
+	
+
+	
+	<h2>Are you the twit in twitter?</h2>
+	
+
+	<p>
+		Twittest is a playful project for children and adults to explore identity across social networks. Loosely based upon the Turing Test, the game is simple: Can you spot the real students, teachers, celebrities and bots from the fakers by reading their tweets? And can you successfully fake being someone else?
+	</p>
+	<p>
+		Twittest looks and feels like Twitter, only in Twittest you get to choose who you want to pretend to be, and let others vote on you. You get points for faking your identity and spotting the identity of other peoples tweets.
+	</p>
+	
+		<iframe width="330" height="248" src="http://www.youtube.com/embed/m_dXtW1TEzA" frameborder="0" allowfullscreen></iframe>
+	
+		
+</div>

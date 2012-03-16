@@ -17,11 +17,6 @@ class PagesController < ApplicationController
     end
   end
   
-  
-  def maintenance
-    @title = "Home"
-  end
-  
   def voteontweets
      @title = "Vote on Tweets"
      if signed_in?

@@ -1,0 +1,42 @@
+<div>
+	<span style="float:right"><h2><%= current_user.score %></h2></span>
+	<h2>My Score</h2>
+</div>
+
+
+<% if current_user.has_voted %>
+	<hr />
+	<% if current_user.school.visible %>
+	<h2>Position overall in Twittest: <%= current_user.position_overall %></h2>
+	<% @twittest_leaderboard.each do |user| %>
+	<div>
+		<span style="float:right"><%= user.position_overall %></span>
+		<%= user.display_name %>
+	</div>
+	<% end %>
+	<hr />
+	<% end %>
+
+	<h2>Position in my school: <%= current_user.position_in_school %></h2>
+	<% @myschool_leaderboard.each do |user| %>
+	<div>
+		<span style="float:right"><%= user.position_in_school %></span>
+		<%= user.display_name %>
+	</div>
+	<% end %>
+
+	<hr />
+
+	<% if current_user.school.visible %>
+	<h2>Position of my School in Twittest: <%= current_user.school.position_overall %></h2>
+	<% @school_leaderboard.each do |school| %>
+	<div>
+		<span style="float:right"><%= school.position_overall %></span>
+		<%= school.name %>
+	</div>
+	<% end %>
+	<% end %>
+<% else %>
+	<hr />
+	Please vote on a tweet to view the leader-boards
+<% end %>
