@@ -1,0 +1,22 @@
+<div class="stream-item">
+  <div class="micropost">
+    <div>
+		<div style="float:left;margin-right:13px"><%=image_tag "tweet_icon.png", :style=>"height:40px; width:54px; position:relative; top:-4px" %></div>
+	<div>
+		<span class="tweeted-on">Tweeted by <%=reported_item.user.first_name %> <%=reported_item.user.last_name %></span>
+		<span class="tweeted-as"><%= reported_item.turing_user.name %></span>
+	</div>
+	<div class="tweeted-content"><%= wrap(reported_item.content) %></div>
+	<div style="color: #999999; font-size: 11px;line-height: 15px;padding:10px 0px 10px 0px">
+		<span style="float:right">
+			<% if reported_item.penalise_user %>
+			  User penalised for tweet content
+			<% else %>
+			  <%= button_to "Approve Tweet", { :controller => "microposts", :action => "approve", :micropost => {:micropost_id => reported_item.id,}} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+			  <%= button_to "Penalise User", { :controller => "microposts", :action => "penalise", :micropost => {:micropost_id => reported_item.id,}} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+			<% end %>
+		</span>
+	</div>
+  </div>
+</div>
+</div>

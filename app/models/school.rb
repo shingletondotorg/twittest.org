@@ -46,9 +46,6 @@ class School < ActiveRecord::Base
   end
 
 
-
-
-
    def self.leaderboard_summary(id)
    n = School.where(:visible => true).count
      if n <= 5

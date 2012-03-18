@@ -1,0 +1,7 @@
+<ul id="settings_nav" class="tabs" role="navigation">
+	<li <% if (request.fullpath == my_school_path) %>class="active"<% end %>><%= link_to "Approve Tweets", my_school_path %></li>
+	<li <% if (request.fullpath == trusted_users_path) %>class="active"<% end %>><%= link_to "My Students", trusted_users_path %></li>
+	<li <% if (request.fullpath == reported_users_path) %>class="active"<% end %>><%= link_to "Reported Tweets", reported_users_path %></li>
+</ul>
+
+

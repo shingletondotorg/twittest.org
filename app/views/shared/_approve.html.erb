@@ -1,0 +1,4 @@
+<% unless @approve_items.empty? %>
+  <%= render :partial => 'shared/approve_item', :collection => @approve_items %>
+  <%= will_paginate @approve_items %>
+<% end %>

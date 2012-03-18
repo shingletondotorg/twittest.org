@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password # creates virtual "password" attribute
-  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id, :voting_fake ,:voting_real, :votes_fake, :votes_real, :has_voted
+  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id, :voting_fake ,:voting_real, :votes_fake, :votes_real, :has_voted, :is_trusted, :n_reported, :n_approved ,:n_penalised
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school
@@ -32,6 +32,46 @@ class User < ActiveRecord::Base
                        
   
 
+  def report_user
+    self.n_reported = self.n_reported + 1
+    if self.n_reported >= 3
+      self.untrust_user
+    end
+    self.save
+  end
+  
+  def approve_user
+      self.n_approved = self.n_approved + 1
+       if self.n_approved >= 3
+         self.trust_user
+       end
+       self.save
+  end
+  
+  def penalise
+    self.n_penalised = self.n_penalised + 1
+    self.total_score = self.total_score - 50
+    self.save
+  end
+  
+  def trust_user
+    self.update_attributes(:is_trusted => true, :n_reported => 0)
+  end
+  
+  def untrust_user
+    self.update_attributes(:is_trusted => false, :n_approved => 0)
+  end
+  
+  def n_approved
+     self.microposts.where(:report_user => false).where(:is_visible => true).count
+  end
+  
+  def n_reported
+    self.microposts.where(:report_user => true).count
+  end
+  
+  
+  
   
  # before_save :encrypt_password
 

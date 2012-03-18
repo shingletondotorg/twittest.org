@@ -79,6 +79,23 @@ class UsersController < ApplicationController
     flash[:success] = "User destroyed."
     redirect_to users_path
   end
+  
+  
+  def approve
+      u = User.find_by_id(params[:user][:user_id])
+      u.trust_user
+      flash[:success] = "User set to trusted"
+      redirect_to request.referer
+  end
+  
+
+  
+  def moderate
+      u = User.find_by_id(params[:user][:user_id])
+      u.untrust_user
+      flash[:success] = "User set to be moderated"
+      redirect_to request.referer
+  end
 
   private
     # Sets @user and ensures that @user is the logged-in user

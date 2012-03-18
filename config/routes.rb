@@ -53,15 +53,29 @@ SampleApp::Application.routes.draw do
   match '/activitythree', :to => 'pages#activitythree'
   match '/activityfour', :to => 'pages#activityfour'
   
-   match '/interest', :to => 'pages#interest'
+  match '/interest', :to => 'pages#interest'
+
+  match '/my_school', :to => 'pages#my_school'
+  match '/trusted_users', :to => 'pages#trusted_users'
+  match '/reported_users', :to => 'pages#reported_users'
+    
+    
+  match '/flag', :to => 'microposts#flag'
+  match '/approve', :to => 'microposts#approve'
+  
+  match '/approve_user', :to => 'users#approve'
+  match '/moderate_user', :to => 'users#moderate'
+  match '/penalty', :to => 'microposts#penalise'
+  
+  
 
   
   # match 'users/:id/update_profile', :to =>'users#update_profile'
   #match 'users(/update_profile(/:id))',  :to =>'users#update_profile'
 
- # root :to => 'pages#home'
+  root :to => 'pages#home'
   
-   root :to => 'pages#maintenance'
+   #root :to => 'pages#maintenance'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

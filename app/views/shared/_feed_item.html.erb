@@ -8,6 +8,14 @@
 		<span class="tweeted-as"><%= feed_item.turing_user.name %></span>
 	</div>
 	<div class="tweeted-content"><%= wrap(feed_item.content) %></div>
+	<% if current_user.turing_user_id == 2 && feed_item.user.turing_user_id == 1 %>
+		<div style="color: #999999; font-size: 11px;line-height: 15px;padding:10px 0px 10px 0px">
+			<span style="float:right">	
+			<%= button_to "Flag as Inappropriate", { :controller => "microposts", :action => "flag", :micropost => {:micropost_id => feed_item.id,}} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+			</span>
+		</div>
+	<% end %>
+
   </div>
 </div>
 </div>

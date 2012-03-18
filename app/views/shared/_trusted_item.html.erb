@@ -1,0 +1,24 @@
+<div class="stream-item">
+  <div class="micropost">
+    <div>
+			
+		<span class="tweeted-as"><%=trusted_item.first_name %> <%=trusted_item.last_name %></span>
+	</div>
+	<div class="tweeted-content">
+			<span style="color: #999999; font-size: 11px;line-height: 15px;">
+				<span style="float:right">	
+				<%= button_to "Trust User", { :controller => "users", :action => "approve", :user => {:user_id => trusted_item.id,}} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+				<%= button_to "Moderate User", { :controller => "users", :action => "moderate", :user => {:user_id => trusted_item.id,}} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+				</span>
+			</span>
+			<% if trusted_item.is_trusted %>
+				Student's tweets are trusted
+			<% else %>
+				Student's tweets require moderation
+			<% end %>
+	
+
+
+  </div>
+</div>
+</div>

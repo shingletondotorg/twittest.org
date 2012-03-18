@@ -30,5 +30,7 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     @title = "Edit school"
   end
+  
+  
  
 end

@@ -1,0 +1,4 @@
+<% unless @reported_tweets.empty? %>
+  <%= render :partial => 'shared/reported_item', :collection => @reported_tweets %>
+
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307164342) do
+ActiveRecord::Schema.define(:version => 20120318233245) do
 
   create_table "conversation_threads", :force => true do |t|
     t.integer  "conversation_id"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20120307164342) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "turing_user_id"
+    t.boolean  "is_visible",     :default => false
+    t.boolean  "report_user",    :default => false
+    t.boolean  "penalise_user",  :default => false
   end
 
   create_table "schools", :force => true do |t|
@@ -66,6 +69,10 @@ ActiveRecord::Schema.define(:version => 20120307164342) do
     t.integer  "votes_fake",         :default => 0
     t.integer  "voting_real",        :default => 0
     t.integer  "voting_fake",        :default => 0
+    t.boolean  "is_trusted",         :default => false
+    t.integer  "n_reported",         :default => 0
+    t.integer  "n_approved",         :default => 0
+    t.integer  "n_penalised",        :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,4 @@
+<% unless @trusted_users.empty? %>
+  <%= render :partial => 'shared/trusted_item', :collection => @trusted_users %>
+  <%= will_paginate @trusted_users %>
+<% end %>

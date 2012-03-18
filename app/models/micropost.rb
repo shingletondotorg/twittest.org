@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :turing_user_id, :user_id
+  attr_accessible :content, :turing_user_id, :user_id, :is_visible, :report_user, :penalise_user
   profanity_filter :content
  
   belongs_to :user
@@ -17,26 +17,30 @@ class Micropost < ActiveRecord::Base
   default_scope :order => 'microposts.created_at DESC'
   scope :display, joins(:turing_user)
   
-   
 
-  
   scope :timeline, lambda { | opts | 
     where( "microposts.user_id != ?", opts[:id] ) 
   }
 
   scope :not_voted, lambda { | opts | 
-    joins("LEFT JOIN votes ON votes.micropost_id = microposts.id AND votes.user_id = #{opts[:id]}").where("votes.id IS NULL AND microposts.user_id != #{opts[:id]}")
+    joins("LEFT JOIN votes ON votes.micropost_id = microposts.id AND votes.user_id = #{opts[:id]}").where("votes.id IS NULL AND microposts.user_id != #{opts[:id]}").where(:is_visible => true)
   }
   
   scope :all_tweets, lambda { | opts | 
-     
+    where(:is_visible => true) 
    }
+   
+   scope :approve_tweets, lambda { | opts | 
+      where(:is_visible => false).where(:report_user => false) 
+    }
   
   scope :not_voted_no_conversation, lambda { | opts | 
     joins("LEFT JOIN votes ON votes.micropost_id = microposts.id AND votes.user_id = #{opts[:id]} LEFT JOIN conversations ON conversations.micropost_id = microposts.id AND conversations.user_id = #{opts[:id]}").where("votes.id IS NULL AND microposts.user_id != #{opts[:id]} AND conversations.id IS NULL")
   }
   
-
+  scope :reported_tweets, lambda { | opts | 
+   joins("INNER JOIN users on users.id = microposts.user_id AND users.schooL_id = #{opts[:school_id]}").where(:report_user => true, :penalise_user => false).order("microposts.updated_at DESC")
+  }
   
   def has_votes?
     self.votes.count != 0

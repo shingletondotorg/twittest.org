@@ -22,6 +22,23 @@ class PagesController < ApplicationController
     @title = "Home"
   end
   
+  def my_school
+    @title = "Approve Tweets"
+    @approve_items = Micropost.approve_tweets(:id => current_user.id).paginate(:page => params[:page])
+    render 'approve_tweets'
+  end
+  
+  def trusted_users
+     @title = "Trusted Users"
+     @trusted_users = current_user.school.users.order("users.last_name ASC").paginate(:page => params[:page])
+   end
+   
+  def reported_users
+    @title = "Reported Users"
+    @reported_tweets = Micropost.reported_tweets(:school_id => current_user.school_id)
+  end
+  
+  
   def voteontweets
      @title = "Vote on Tweets"
      if signed_in?

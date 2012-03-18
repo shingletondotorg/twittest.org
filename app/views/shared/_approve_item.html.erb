@@ -1,0 +1,18 @@
+<div class="stream-item">
+  <div class="micropost">
+    <div>
+		<div style="float:left;margin-right:13px"><%=image_tag "tweet_icon.png", :style=>"height:40px; width:54px; position:relative; top:-4px" %></div>
+	<div>
+		<span class="tweeted-on">Tweeted <%= time_ago_in_words(approve_item.created_at) %> ago</span>
+		<span class="tweeted-as"><%= approve_item.turing_user.name %></span>
+	</div>
+	<div class="tweeted-content"><%= wrap(approve_item.content) %></div>
+	<div style="color: #999999; font-size: 11px;line-height: 15px;padding:10px 0px 10px 0px">
+		<span style="float:right">	
+			<%= button_to "Approve Tweet", { :controller => "microposts", :action => "approve", :micropost => {:micropost_id => approve_item.id,}} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+			<%= button_to "Flag as Inappropriate", { :controller => "microposts", :action => "flag", :micropost => {:micropost_id => approve_item.id,}} ,:form_class => "button_to_link_form", :class=>'button_to_link',:method => :post  %>
+		</span>
+	</div>
+  </div>
+</div>
+</div>
