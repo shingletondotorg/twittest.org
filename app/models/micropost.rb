@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :turing_user_id, :user_id, :is_visible, :report_user, :penalise_user
+  attr_accessible :content, :turing_user_id, :user_id, :is_visible, :report_user, :penalise_user, :reported_by, :penalised_by
   profanity_filter :content
  
   belongs_to :user
