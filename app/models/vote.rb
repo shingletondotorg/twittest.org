@@ -66,11 +66,16 @@ class Vote < ActiveRecord::Base
     if micropost.user.turing_user_id == micropost.turing_user_id
       #author is posting as themselves reward voter and author if vote matches micropost.turing_user_id
       if self.vote == micropost.turing_user_id
-        voting_user.voting_real = voting_user.voting_real + 10 
-        tweet_user.votes_real = tweet_user.votes_real + 10
+        if micropost.turing_user_id == 1
+            voting_user.voting_real = voting_user.voting_real + 5 
+            tweet_user.votes_real = tweet_user.votes_real + 2
+        else
+          voting_user.voting_real = voting_user.voting_real + 10 
+          tweet_user.votes_real = tweet_user.votes_real + 8
+        end
       else
         voting_user.voting_real = voting_user.voting_real - 10
-        tweet_user.votes_real = tweet_user.votes_real - 10
+        tweet_user.votes_real = tweet_user.votes_real - 8
       end
       
     elsif
@@ -78,11 +83,11 @@ class Vote < ActiveRecord::Base
       if self.vote == micropost.user.turing_user_id
         #voter spotted the fake
         voting_user.voting_fake = voting_user.voting_fake + 10
-        tweet_user.votes_fake = tweet_user.votes_fake - 10
+        tweet_user.votes_fake = tweet_user.votes_fake - 8
       elsif self.vote == micropost.turing_user_id
         #voter has been fooled
         voting_user.voting_fake = voting_user.voting_fake - 10
-        tweet_user.votes_fake = tweet_user.votes_fake + 10
+        tweet_user.votes_fake = tweet_user.votes_fake + 15
       else
         #voter partially fooled
         voting_user.voting_fake = voting_user.voting_fake + 6
