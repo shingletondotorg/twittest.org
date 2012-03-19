@@ -42,7 +42,7 @@ class MicropostsController < ApplicationController
 
   def flag
     m = Micropost.find_by_id(params[:micropost][:micropost_id])
-    m.update_attributes(:is_visible => false, :report_user => true)
+    m.update_attributes(:is_visible => false, :report_user => true, :reported_by =>current_user.id)
     u = User.find_by_id(m.user_id)
     u.report_user
     flash[:success] = "Tweet reported"
@@ -60,7 +60,7 @@ class MicropostsController < ApplicationController
    
    def penalise
       m = Micropost.find_by_id(params[:micropost][:micropost_id])
-      m.update_attributes(:penalise_user => true)
+      m.update_attributes(:penalise_user => true, :penalised_by =>current_user.id)
       u = User.find_by_id(m.user_id)
       u.penalise
       flash[:success] = "User has been penalised"
