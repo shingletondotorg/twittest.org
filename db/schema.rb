@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319000608) do
+ActiveRecord::Schema.define(:version => 20120319101836) do
 
   create_table "conversation_threads", :force => true do |t|
     t.integer  "conversation_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120319000608) do
     t.boolean  "penalise_user",  :default => false
     t.integer  "penalised_by"
     t.integer  "reported_by"
+    t.integer  "approved_by"
   end
 
   create_table "schools", :force => true do |t|

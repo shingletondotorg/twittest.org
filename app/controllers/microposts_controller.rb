@@ -51,7 +51,7 @@ class MicropostsController < ApplicationController
   
   def approve
      m = Micropost.find_by_id(params[:micropost][:micropost_id])
-     m.update_attributes(:is_visible => true, :report_user => false)
+     m.update_attributes(:is_visible => true, :report_user => false, :approved_by => current_user.id)
      u = User.find_by_id(m.user_id)
      u.approve_user
      flash[:success] = "Tweet approved"
