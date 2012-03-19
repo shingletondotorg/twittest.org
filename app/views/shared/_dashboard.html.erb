@@ -16,7 +16,7 @@
 	<% end %>
 	<hr />
 	<% end %>
-
+	<% if current_user.school.visible %>
 	<h2>Position in my school: <%= current_user.position_in_school %></h2>
 	<% @myschool_leaderboard.each do |user| %>
 	<div>
@@ -24,7 +24,7 @@
 		<%= user.display_name %>
 	</div>
 	<% end %>
-
+	<% end %>
 	<hr />
 
 	<% if current_user.school.visible %>
