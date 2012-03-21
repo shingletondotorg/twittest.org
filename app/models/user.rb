@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password # creates virtual "password" attribute
-  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id, :voting_fake ,:voting_real, :votes_fake, :votes_real, :has_voted, :is_trusted, :n_reported, :n_approved ,:n_penalised
+  attr_accessible :first_name, :last_name, :display_name, :email, :password, :password_confirmation, :turing_user_id, :school_id, :voting_fake ,:voting_real, :votes_fake, :votes_real, :has_voted, :is_trusted, :n_reported, :n_approved ,:n_penalised, :has_tweeted, :total_score
   has_many :microposts, :dependent => :destroy
   has_many :votes
   belongs_to :school
@@ -10,19 +10,22 @@ class User < ActiveRecord::Base
   has_many :conversations, :through => :microposts
 
 
+  scope :active_players, select("DISTINCT id").where("has_voted = :has_voted or has_tweeted = :has_tweeted", { :has_voted => true, :has_tweeted => true })
+  
+
   # http://railstutorial.org/chapters/modeling-and-viewing-users-one#code:validates_format_of_email
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :school_id, :presence => true
-  validates :turing_user_id, :presence => true
+  validates :school_id, :presence => true,:on => :create
+  validates :turing_user_id, :presence => true,:on => :create
   
   validates :first_name, :presence => true,
-                   :length   => { :maximum => 50 }
+                   :length   => { :maximum => 50 },:on => :create
   validates :last_name, :presence => true,
-                    :length   => { :maximum => 50 }               
+                    :length   => { :maximum => 50 }  ,:on => :create             
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
-                    :uniqueness => { :case_sensitive => false }
+                    :uniqueness => { :case_sensitive => false },:on => :create
   
   # Automatically creates virtual attribute "password_confirmation"
   validates :password, :presence     => true,

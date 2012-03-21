@@ -42,8 +42,17 @@ class Micropost < ActiveRecord::Base
    joins("INNER JOIN users on users.id = microposts.user_id AND users.schooL_id = #{opts[:school_id]}").where(:report_user => true, :penalise_user => false).order("microposts.updated_at DESC")
   }
   
+  #scope :count_turing_user_today, lambda { | opts |
+ #  where("turing_user_id = #{opts[:turing_user_id]} AND user_id = #{opts[:user_id]} AND DATE(created_at) = ?", Time.now.strftime("%Y-%m-%d")).count
+  #}
+  
+  
   def has_votes?
     self.votes.count != 0
+  end
+  
+  def self.count_turing_user_today(turing_user_id, user_id)
+    where("turing_user_id = ? AND user_id = ? AND DATE(created_at) = ?", turing_user_id, user_id, Time.now.strftime("%Y-%m-%d")).count
   end
   
   def self.same_content?(user_id, content, turing_user_id)

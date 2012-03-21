@@ -81,14 +81,27 @@ class UsersController < ApplicationController
   end
   
   
+  def calculate_scores
+    reset_users = User.active_players
+    reset_users.each do | user |
+      user.update_attributes(:total_score => 0, :votes_real => 0, :votes_fake => 0, :voting_real => 0, :voting_fake => 0)
+    end
+    
+    votes = Vote.all
+    votes.each do | vote |
+        vote.update_score
+    end
+ 
+  end
+  
+  
+  
   def approve
       u = User.find_by_id(params[:user][:user_id])
       u.trust_user
       flash[:success] = "User set to trusted"
       redirect_to request.referer
   end
-  
-
   
   def moderate
       u = User.find_by_id(params[:user][:user_id])

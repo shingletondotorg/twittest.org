@@ -68,6 +68,7 @@ SampleApp::Application.routes.draw do
   match '/penalty', :to => 'microposts#penalise'
   
   
+ match '/calculate_scores', :to => 'users#calculate_scores'
 
   
   # match 'users/:id/update_profile', :to =>'users#update_profile'

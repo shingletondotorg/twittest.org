@@ -8,18 +8,24 @@ class MicropostsController < ApplicationController
 
   def create
     #raise params[:user].inspect
-    
+
     if params[:micropost][:content].empty?
       flash[:error] = "There has been a problem saving your tweet. You must enter a message."
       redirect_to request.referer
     elsif Micropost.same_content?(current_user.id, params[:micropost][:content], params[:micropost][:turing_user_id])
       flash[:error] = "You have already created a tweet for that identity with the same content today."
       redirect_to request.referer
+    #elsif Micropost.count_turing_user_today(params[:micropost][:turing_user_id], current_user.id) > 5
+    #   flash[:error] = "Maximum number of tweets for that user type exceeded for today."
+     #   redirect_to request.referer
     else
       m = current_user.microposts.build(params[:micropost])
       if m.save
         if ((current_user.turing_user_id != 1) or (current_user.turing_user_id == 1 && current_user.is_trusted))
           m.update_attributes(:is_visible => true)
+        end
+        if !current_user.has_tweeted
+          current_user.update_attributes(:has_tweeted => true)
         end
         flash[:success] = "Tweet created!"
         redirect_to request.referer
